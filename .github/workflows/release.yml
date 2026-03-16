@@ -33,18 +33,18 @@ jobs:
       - name: Update Download URL for Release Asset
         run: |
           # The release asset module.json gets a specific download URL so historical versions can be installed
-          sed -i 's|"download": ".*"|"download": "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/sra2-xp-cash.zip"|' module.json
+          sed -i 's|"download": ".*"|"download": "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/sra2-enhancements.zip"|' module.json
 
       - name: Create Module Zip
         run: |
-          mkdir /tmp/sra2-xp-cash
-          rsync -a . /tmp/sra2-xp-cash/ --exclude .git --exclude .github --exclude .gitignore
+          mkdir /tmp/sra2-enhancements
+          rsync -a . /tmp/sra2-enhancements/ --exclude .git --exclude .github --exclude .gitignore
           cd /tmp
-          zip -r $GITHUB_WORKSPACE/sra2-xp-cash.zip sra2-xp-cash/
+          zip -r $GITHUB_WORKSPACE/sra2-enhancements.zip sra2-enhancements/
           cd $GITHUB_WORKSPACE
 
       - name: Upload Release Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ github.event.release.tag_name }} sra2-xp-cash.zip module.json --clobber
+          gh release upload ${{ github.event.release.tag_name }} sra2-enhancements.zip module.json --clobber
