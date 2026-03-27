@@ -2,7 +2,7 @@
   "id": "sra2-enhancements",
   "title": "SRA2: Enhancements",
   "description": "Economy separation and other enhancements for the Shadowrun Anarchy 2 system.",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "compatibility": {
     "minimum": "11",
     "verified": "13.2.1"
