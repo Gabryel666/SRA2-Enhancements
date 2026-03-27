@@ -60,28 +60,19 @@ export function setupSheetOverrides() {
     });
 
     Hooks.on('renderItemSheet', (app, html, data) => {
-        // Overwrite standard "Yens" text with "XP" in item sheets as well
-        html.find('.cost-display, .cost-value').each(function () {
-            $(this).text($(this).text().replace(/Yens/ig, 'XP').replace(/¥/g, 'XP'));
-        });
+        try {
+            // If it's a feat, check if it's the right type
+            const item = app.document || app.item || app.object;
+            if (!item || item.type !== 'feat') return;
 
-        // If it's a feat, check if it's the right type
-        if (app.item.type !== 'feat') return;
+            const featType = item.system?.featType;
+            if (!isItemCashEnabled(featType)) return;
 
-        const featType = app.item.system?.featType;
-        if (!isItemCashEnabled(featType)) return;
-
-        // Ensure we hide the native cost select if the system still generates it
-        const generalSection = html.find('section[data-section-content="general"]');
-        if (generalSection.length) {
-            const costSelect = generalSection.find('select[name="system.cost"]');
-            if (costSelect.length) {
-                // Hide the whole form group containing the native cost
-                costSelect.closest('.form-group').hide();
-            }
-
+            // Ensure we hide the native cost select if the system still generates it
+            const generalSection = html.find('section[data-section-content="general"]');
+            
             // Always inject our uniform Cash Cost field
-            const currentCashCost = app.item.getFlag('sra2-enhancements', 'cost') || 0;
+            const currentCashCost = item.getFlag('sra2-enhancements', 'cost') || 0;
             const newGroupHtml = `
                 <div class="form-group cash-cost-group" style="background: rgba(255, 215, 0, 0.05); border-left: 3px solid gold; padding-left: 8px;">
                     <label style="color: gold; text-shadow: 0 0 5px rgba(255,215,0,0.5);">${game.i18n.localize('SRA2XPCash.UI.ItemCashCostLabel') || 'Coût en Cash'}</label>
@@ -92,28 +83,42 @@ export function setupSheetOverrides() {
                 </div>
             `;
             
-            // Insert it elegantly right after the rating group
-            const ratingGroup = generalSection.find('input[name="system.rating"]').closest('.form-group');
-            if (ratingGroup.length) {
-                ratingGroup.after(newGroupHtml);
-            } else { generalSection.prepend(newGroupHtml); }
+            if (generalSection.length) {
+                const costSelect = generalSection.find('select[name="system.cost"]');
+                if (costSelect.length) {
+                    // Hide the whole form group containing the native cost
+                    costSelect.closest('.form-group').hide();
+                }
+
+                // Insert it elegantly right after the rating group
+                const ratingGroup = generalSection.find('input[name="system.rating"]').closest('.form-group');
+                if (ratingGroup.length) {
+                    ratingGroup.after(newGroupHtml);
+                } else { generalSection.prepend(newGroupHtml); }
+            } else {
+                html.find('.sheet-header').after(newGroupHtml);
+            }
+        } catch(e) {
+            console.error('SRA2 Enhancements | Error in renderItemSheet override:', e);
         }
     });
 
     // Also inject calculated cash cost in Character Sheet lists if possible
     Hooks.on('renderActorSheet', (app, html, data) => {
-        if (app.actor.type !== 'character') return;
+        try {
+            const actor = app.document || app.actor || app.object;
+            if (!actor || actor.type !== 'character') return;
 
-        // Loop over feats in the sheet to append their cash cost if applicable
-        html.find('.feat-item, .skill-item').each(function () {
-            const itemId = $(this).data('itemId');
-            if (itemId) {
-                const item = app.actor.items.get(itemId);
-                if (item && isItemCashEnabled(item.system?.featType)) {
-                    const cashCost = item.getFlag('sra2-enhancements', 'cost');
-                    if (cashCost) {
+            // Loop over feats in the sheet to append their cash cost if applicable
+            html.find('.feat-item, .skill-item').each(function () {
+                const itemId = $(this).data('itemId') || $(this).attr('data-item-id');
+                if (itemId) {
+                    const item = actor.items.get(itemId);
+                    if (item && isItemCashEnabled(item.system?.featType)) {
+                        const cashCost = item.getFlag('sra2-enhancements', 'cost') || 0;
+                        
                         // For basic view (next to name or in a specific place)
-                        // In SRA2 sheet V2, there's `.advanced-cost` inside `.row.advanced-info`
+                        // In SRA2 sheet V2, there's \`.advanced-cost\` inside \`.row.advanced-info\`
                         let advancedRow = $(this).next('.advanced-info');
                         if (!advancedRow.length && $(this).closest('.cyberdeck-group').length) {
                             advancedRow = $(this).closest('.cyberdeck-group').next('.advanced-info');
@@ -131,8 +136,10 @@ export function setupSheetOverrides() {
                         }
                     }
                 }
-            }
-        });
+            });
+        } catch (e) {
+            console.error('SRA2 Enhancements | Error in renderActorSheet list item injection:', e);
+        }
     });
 
     // Enforce "free-equipment" native cost if Cash cost is active, so SRA2 naturally calculates 0 XP
