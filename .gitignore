@@ -1,2 +1,5 @@
 # SRA2 Core System Reference
 .sra2-system-ref/
+node_modules/
+package-lock.json
+compile.mjs

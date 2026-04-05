@@ -1,0 +1,24 @@
+{
+  "name": "sra2-enhancements",
+  "version": "1.0.0",
+  "description": "Ce module complémentaire pour FoundryVTT est conçu pour enrichir et personnaliser l'expérience de jeu sur le système **Shadowrun Anarchy 2** (SRA2).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabryel666/FoundryVTT-SRA2-xpcash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Gabryel666/FoundryVTT-SRA2-xpcash/issues"
+  },
+  "homepage": "https://github.com/Gabryel666/FoundryVTT-SRA2-xpcash#readme",
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.3"
+  }
+}
