@@ -37,18 +37,5 @@
       "name": "Français",
       "path": "lang/fr.json"
     }
-  ],
-  "packs": [
-    {
-      "name": "sra2-sys-cache",
-      "label": "SRA2 Enhancements - Objets",
-      "path": "packs/sra2-sys-cache",
-      "type": "Item",
-      "system": "sra2",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      }
-    }
   ]
 }
