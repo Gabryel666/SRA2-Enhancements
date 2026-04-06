@@ -1,30 +1,63 @@
 # SRA2: Enhancements
 
-Ce module complémentaire pour FoundryVTT est conçu pour enrichir et personnaliser l'expérience de jeu sur le système **Shadowrun Anarchy 2** (SRA2).
+Ce module complémentaire pour FoundryVTT enrichit et personnalise l'expérience de jeu sur le système **Shadowrun Anarchy 2** (SRA2).
 
-## Fonctionnalités Principales
+[![Version](https://img.shields.io/github/v/release/Gabryel666/SRA2-Enhancements?label=version)](https://github.com/Gabryel666/SRA2-Enhancements/releases/latest)
+[![FoundryVTT](https://img.shields.io/badge/FoundryVTT-v11%2B-informational)](https://foundryvtt.com)
+[![SRA2](https://img.shields.io/badge/Système-SRA2%2013.2.1%2B-blue)](https://foundryvtt.com/packages/sra2)
 
-* **Séparation Totale de l'Économie (XP / Cash) :**  
-  Le système natif gère parfois l'équipement via le système d'expérience. Ce module permet de séparer ces concepts en gérant un portefeuille de "Cash" dédié, indépendant des points d'XP résiduels du système.
-  
-* **Interface "Cash" Intégrée à la Fiche V2 :**  
-  Le module remplace l'affichage global des Yens par de l'XP là où c'est nécessaire, et injecte proprement un véritable champ "Cash" (Yens) dans le pied de page de la fiche de personnage V2.
+---
 
-* **Coût en Cash sur les Objets :**  
-  Les armes, équipements, cyberwares, cyberdecks, etc. bénéficient d'un champ d'édition de Coût en Cash. Leur coût s'affiche avec une coloration dorée bien visible dans les listes de la fiche de personnage.
+## Fonctionnalités
 
-* **Déduction Automatique à l'Achat :**  
-  Lorsqu'un objet configuré avec un coût en Cash est glissé-déposé sur la fiche d'un personnage, une fenêtre de confirmation propose de déduire automatiquement cette somme des économies du personnage.
+### 💰 Séparation de l'Économie (XP / Cash)
+Le système natif SRA2 gère parfois l'équipement via les points d'expérience. Ce module sépare clairement ces deux concepts :
+- Un champ **Cash (¥)** dédié est injecté dans le pied de page de la fiche de personnage V2.
+- Le champ XP natif est conservé et renommé explicitement en "XP".
 
-* **Sons Personnalisés d'Interface :**  
-  Ajoutez une touche d'immersion via les paramètres en configurant un fichier audio qui se jouera automatiquement à l'ouverture ou à la fermeture de la fiche de personnage.
+### 🏷️ Coût en Cash sur les Objets
+Les armes, équipements, cyberwares, cyberdecks et autres objets bénéficient d'un champ **"Coût en Cash"** affiché en doré dans les listes de la fiche de personnage.
+
+### 🛒 Déduction Automatique à l'Achat
+Lorsqu'un objet ayant un coût en Cash est ajouté à la fiche d'un personnage, une fenêtre de confirmation propose de déduire automatiquement cette somme de son portefeuille.
+
+### 🔊 Sons Personnalisés d'Interface
+Configurez un fichier audio qui se joue automatiquement à l'ouverture ou à la fermeture de la fiche de personnage dans les paramètres du module.
+
+---
+
+## 📦 Compendium : SRA2 - Enhancements (Objets)
+
+Le module inclut un compendium de **611 objets** (armes, équipements, cyberwares, cyberdecks, sorts, etc.) traduits en français pour le système SRA2.
+
+### Comment importer les objets
+
+> ⚠️ **Note FoundryVTT V13+ :** Le glisser-déposer direct depuis un compendium vers l'onglet Objets n'est plus supporté en V13. Utilisez les méthodes ci-dessous.
+
+**Importer un objet seul :**
+1. Ouvrir le compendium **SRA2 - Enhancements (Objets)** dans la liste des compendiums.
+2. **Clic droit** sur l'objet souhaité → **"Importer"**.
+
+**Importer tous les objets d'un coup :**
+1. Dans la barre latérale, onglet Compendiums.
+2. **Clic droit** sur **"SRA2 - Enhancements (Objets)"** → **"Importer tout le contenu"**.
+3. Les 611 objets apparaissent dans votre onglet Objets, organisés par dossiers.
+
+---
 
 ## Compatibilité
 
-Le module est conçu pour être totalement transparent et résilient. 
-* **Système SRA2 :** Vérifié et testé pour la version **13.2.1+**.
-* **Fiches :** Support complet de la fiche V2 (`actor-character-sheet-v2.hbs`).
+| Élément | Version |
+|---|---|
+| FoundryVTT | v11+ (vérifié v13) |
+| Système SRA2 | 13.2.1+ (vérifié 13.4.3) |
+| Fiche supportée | Actor Character Sheet V2 |
+
+---
 
 ## Notes Techniques
 
-L'identifiant du module est `sra2-enhancements`. Vos anciennes données (flags) initialement stockées sous `sra2-xp-cash` sont automatiquement migrées au lancement du monde pour éviter toute perte de progression lors de l'installation.
+- **Identifiant du module :** `sra2-enhancements`
+- **Migration automatique :** Les anciennes données stockées sous `sra2-xp-cash` sont migrées automatiquement au lancement du monde.
+- **Protection des données :** Le Cash des personnages est stocké dans les flags du module (`flags.sra2-enhancements.cash`) et n'interfère pas avec les données système natives.
+

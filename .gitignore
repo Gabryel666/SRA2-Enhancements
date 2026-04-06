@@ -1,5 +1,15 @@
-# SRA2 Core System Reference
+# SRA2 Core System Reference (local dev dependency)
 .sra2-system-ref/
+
+# Node
 node_modules/
 package-lock.json
+
+# Build / Dev scripts (local use only)
+build-*.mjs
 compile.mjs
+_temp_*/
+
+# Temp files
+temp_files.txt
+*.code-workspace
