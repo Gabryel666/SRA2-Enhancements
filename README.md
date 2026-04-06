@@ -26,25 +26,6 @@ Configurez un fichier audio qui se joue automatiquement à l'ouverture ou à la 
 
 ---
 
-## 📦 Compendium : SRA2 - Enhancements (Objets)
-
-Le module inclut un compendium de **611 objets** (armes, équipements, cyberwares, cyberdecks, sorts, etc.) traduits en français pour le système SRA2.
-
-### Comment importer les objets
-
-> ⚠️ **Note FoundryVTT V13+ :** Le glisser-déposer direct depuis un compendium vers l'onglet Objets n'est plus supporté en V13. Utilisez les méthodes ci-dessous.
-
-**Importer un objet seul :**
-1. Ouvrir le compendium **SRA2 - Enhancements (Objets)** dans la liste des compendiums.
-2. **Clic droit** sur l'objet souhaité → **"Importer"**.
-
-**Importer tous les objets d'un coup :**
-1. Dans la barre latérale, onglet Compendiums.
-2. **Clic droit** sur **"SRA2 - Enhancements (Objets)"** → **"Importer tout le contenu"**.
-3. Les 611 objets apparaissent dans votre onglet Objets, organisés par dossiers.
-
----
-
 ## Compatibilité
 
 | Élément | Version |
