@@ -82,6 +82,14 @@
                 "Compendium": "Compendium",
                 "Settings": "Settings"
             },
+            "HideChatPeek": {
+                "Name": "🖥️ Hide mini chat (chat peek)",
+                "Hint": "Hides the small chat preview that appears when you are on another sidebar tab."
+            },
+            "AutoUnpauseGM": {
+                "Name": "🖥️ Auto-unpause on GM login",
+                "Hint": "When a GM loads into the world, the pause is automatically cleared."
+            },
             "HideNavComplete": {
                 "Name": "🙈 Hide navigation bar",
                 "Hint": "Completely hides the scene navigation bar at the top of the screen."

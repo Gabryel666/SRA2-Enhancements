@@ -33,6 +33,7 @@ export class SRA2ConfigApp extends FormApplication {
             // Interface
             'hideDragMeasurement', 'hideFormatBar', 'chatControlsBelow',
             'sidebarExpandOnStart', 'sidebarDefaultTab',
+            'hideChatPeek', 'autoUnpauseGM',
             // Hide
             'hideNavComplete', 'hideControls', 'hideHotbar', 'hideLogo', 'hidePlayers',
             'hideTabChat', 'hideTabCombat', 'hideTabScenes', 'hideTabActors', 'hideTabItems',
@@ -83,6 +84,10 @@ export class SRA2ConfigApp extends FormApplication {
 
         // Notify and reload if needed
         ui.notifications.info('SRA2: Enhancements — Configuration sauvegardée.');
+
+        // Re-apply UI settings immediately (except those needing reload)
+        const { reapplyUI } = await import('./sra2-ui.js');
+        reapplyUI();
 
         // Check if a reload is needed
         const needsReload = data.sidebarExpandOnStart !== game.settings.get(MOD_ID, 'sidebarExpandOnStart');

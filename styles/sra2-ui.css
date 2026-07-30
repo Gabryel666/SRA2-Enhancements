@@ -2,50 +2,65 @@
    SRA2-Enhancements: UI Tweaks
    ========================================== */
 
-/* ---- Drag measurement hide ---- */
+/* ---- Drag measurement hide (CSS only, pas de setting core) ---- */
 body.sra2-hide-drag-measure #measurement-tool {
     display: none !important;
 }
 
-/* ---- Hide chat format toolbar ---- */
-body.sra2-hide-format-bar #chat menu.editor-menu {
+/* ---- Hide chat format toolbar + tuer l'espace ---- */
+body.sra2-hide-format-bar #chat menu.editor-menu,
+body.sra2-hide-format-bar #chat menu.editor-menu * {
     display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+}
+/* Forcer le parent à se réduire aussi */
+body.sra2-hide-format-bar #chat-form {
+    padding-bottom: 0 !important;
 }
 
-/* ---- Chat controls below input ---- */
-body.sra2-chat-controls-below #chat {
-    display: flex;
-    flex-direction: column;
-}
-body.sra2-chat-controls-below #chat-message {
-    order: -1;
-}
-body.sra2-chat-controls-below #chat-form {
-    order: -1;
-}
+/* ---- Chat controls below input (DOM moved, CSS backup) ---- */
 body.sra2-chat-controls-below #chat-controls {
-    order: 0;
-    margin-top: 4px;
+    margin-top: 6px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+body.sra2-chat-controls-below #chat-log {
+    flex: 1 1 auto;
 }
 
-/* ---- Sidebar nav toggle hide (complete nav bar) ---- */
-body.sra2-hide-nav-complete #navigation {
-    display: none !important;
-}
-
-/* ---- Individual tab toggles ---- */
-body.sra2-hide-tab-chat button[data-tab="chat"] { display: none !important; }
-body.sra2-hide-tab-combat button[data-tab="combat"] { display: none !important; }
-body.sra2-hide-tab-scenes button[data-tab="scenes"] { display: none !important; }
-body.sra2-hide-tab-actors button[data-tab="actors"] { display: none !important; }
-body.sra2-hide-tab-items button[data-tab="items"] { display: none !important; }
-body.sra2-hide-tab-journal button[data-tab="journal"] { display: none !important; }
-body.sra2-hide-tab-tables button[data-tab="tables"] { display: none !important; }
-body.sra2-hide-tab-cards button[data-tab="cards"] { display: none !important; }
-body.sra2-hide-tab-macros button[data-tab="macros"] { display: none !important; }
-body.sra2-hide-tab-playlists button[data-tab="playlists"] { display: none !important; }
-body.sra2-hide-tab-compendium button[data-tab="compendium"] { display: none !important; }
-body.sra2-hide-tab-settings button[data-tab="settings"] { display: none !important; }
+/* ---- Sidebar tab hide — tuer completement l'espace ---- */
+/* Chaque bouton de tab est dans un conteneur flex ou flottant.
+   On cache aussi le parent immédiat si display:none suffit pas. */
+body.sra2-hide-tab-chat button[data-tab="chat"],
+body.sra2-hide-tab-chat button[data-tab="chat"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-combat button[data-tab="combat"],
+body.sra2-hide-tab-combat button[data-tab="combat"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-scenes button[data-tab="scenes"],
+body.sra2-hide-tab-scenes button[data-tab="scenes"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-actors button[data-tab="actors"],
+body.sra2-hide-tab-actors button[data-tab="actors"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-items button[data-tab="items"],
+body.sra2-hide-tab-items button[data-tab="items"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-journal button[data-tab="journal"],
+body.sra2-hide-tab-journal button[data-tab="journal"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-tables button[data-tab="tables"],
+body.sra2-hide-tab-tables button[data-tab="tables"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-cards button[data-tab="cards"],
+body.sra2-hide-tab-cards button[data-tab="cards"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-macros button[data-tab="macros"],
+body.sra2-hide-tab-macros button[data-tab="macros"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-playlists button[data-tab="playlists"],
+body.sra2-hide-tab-playlists button[data-tab="playlists"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-compendium button[data-tab="compendium"],
+body.sra2-hide-tab-compendium button[data-tab="compendium"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
+body.sra2-hide-tab-settings button[data-tab="settings"],
+body.sra2-hide-tab-settings button[data-tab="settings"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
 
 /* ---- Hide controls (left toolbar) ---- */
 body.sra2-hide-controls #controls {
@@ -57,14 +72,39 @@ body.sra2-hide-hotbar #hotbar {
     display: none !important;
 }
 
+/* ---- Collapsible hotbar (de nores-interface-enhancements) ---- */
+body.sra2-hotbar-collapsed #hotbar .hotbar-directory,
+body.sra2-hotbar-collapsed #hotbar .macro {
+    display: none !important;
+}
+body.sra2-hotbar-collapsed #hotbar {
+    height: auto !important;
+    min-height: 28px !important;
+}
+
 /* ---- Hide logo ---- */
 body.sra2-hide-logo #logo {
     display: none !important;
 }
 
 /* ---- Hide players list ---- */
-body.sra2-hide-players #players {
+body.sra2-hide-players #players,
+body.sra2-hide-players section#players {
     display: none !important;
+}
+
+/* ---- Hide mini chat (chat peek) de nores-interface-enhancements ---- */
+body.sra2-hide-chat-peek #chat-notifications {
+    display: none !important;
+    width: 0 !important;
+    max-width: 0 !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
 /* ==========================================

@@ -76,11 +76,19 @@
                 "Items": "Objets",
                 "Journal": "Journal",
                 "Tables": "Tables",
-                "Cards": "Cartes",
+                "Cards": "Objets plaçables",
                 "Macros": "Macros",
                 "Playlists": "Playlists",
                 "Compendium": "Compendium",
                 "Settings": "Paramètres"
+            },
+            "HideChatPeek": {
+                "Name": "🖥️ Cacher le mini-chat (chat peek)",
+                "Hint": "Cache le petit aperçu du chat qui apparaît quand vous êtes sur un autre onglet."
+            },
+            "AutoUnpauseGM": {
+                "Name": "🖥️ Démarrer sans pause (MJ)",
+                "Hint": "Quand un MJ charge le monde, la pause est automatiquement levée."
             },
             "HideNavComplete": {
                 "Name": "🙈 Cacher la barre de navigation",

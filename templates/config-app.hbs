@@ -108,7 +108,7 @@
                 <option value="items">{{localize "SRA2UI.Settings.SidebarDefaultTab.Items"}}</option>
                 <option value="journal">{{localize "SRA2UI.Settings.SidebarDefaultTab.Journal"}}</option>
                 <option value="tables">{{localize "SRA2UI.Settings.SidebarDefaultTab.Tables"}}</option>
-                <option value="cards">{{localize "SRA2UI.Settings.SidebarDefaultTab.Cards"}}</option>
+                <option value="cards">Objets plaçables</option>
                 <option value="macros">{{localize "SRA2UI.Settings.SidebarDefaultTab.Macros"}}</option>
                 <option value="playlists">{{localize "SRA2UI.Settings.SidebarDefaultTab.Playlists"}}</option>
                 <option value="compendium">{{localize "SRA2UI.Settings.SidebarDefaultTab.Compendium"}}</option>
@@ -116,6 +116,20 @@
                 {{/select}}
             </select>
             <p class="sra2-hint">{{localize "SRA2UI.Settings.SidebarDefaultTab.Hint"}}</p>
+        </div>
+
+        <h4 class="sra2-subsection-title">Chat & Notifications</h4>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HideChatPeek.Name"}}</label>
+            <input type="checkbox" name="hideChatPeek" {{checked settings.hideChatPeek}} />
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.HideChatPeek.Hint"}}</p>
+        </div>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.AutoUnpauseGM.Name"}}</label>
+            <input type="checkbox" name="autoUnpauseGM" {{checked settings.autoUnpauseGM}} />
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.AutoUnpauseGM.Hint"}}</p>
         </div>
     </div>
 
@@ -178,7 +192,7 @@
                 <input type="checkbox" name="hideTabTables" {{checked settings.hideTabTables}} />
             </div>
             <div class="sra2-setting-row">
-                <label>Cartes</label>
+                <label>Objets plaçables</label>
                 <input type="checkbox" name="hideTabCards" {{checked settings.hideTabCards}} />
             </div>
             <div class="sra2-setting-row">

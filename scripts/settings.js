@@ -82,6 +82,18 @@ export function registerSettings() {
             scope: 'world', config: false, type: Boolean, default: false
         });
     }
+
+    // Nore-style enhancements
+    game.settings.register('sra2-enhancements', 'hideChatPeek', {
+        name: '🖥️ Cacher le mini-chat (chat peek)',
+        hint: 'Cache le petit aperçu du chat quand vous êtes sur un autre onglet.',
+        scope: 'world', config: false, type: Boolean, default: false
+    });
+    game.settings.register('sra2-enhancements', 'autoUnpauseGM', {
+        name: '🖥️ Démarrer sans pause (MJ)',
+        hint: 'Quand un MJ charge le monde, la pause est automatiquement levée.',
+        scope: 'world', config: false, type: Boolean, default: false
+    });
 }
 
 export function isItemCashEnabled(featType) {
