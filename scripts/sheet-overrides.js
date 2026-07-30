@@ -9,7 +9,8 @@ export function setupSheetOverrides() {
         });
 
         // Only inject the separate Cash field on Character sheets
-        if (app.actor.type !== 'character') return;
+        const actor = app.document || app.actor;
+        if (!actor || actor.type !== 'character') return;
 
         // Play open sound if configured and not already played for this instance
         const openSound = game.settings.get('sra2-enhancements', 'sheetOpenSound');
