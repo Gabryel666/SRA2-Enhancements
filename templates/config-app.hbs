@@ -1,0 +1,206 @@
+<form class="sra2-config">
+    <div class="sra2-config-tabs">
+        <button type="button" class="sra2-tab active" data-tab="economy">💰 Économie</button>
+        <button type="button" class="sra2-tab" data-tab="sound">🔊 Sons</button>
+        <button type="button" class="sra2-tab" data-tab="interface">🖥️ Interface</button>
+        <button type="button" class="sra2-tab" data-tab="hide">🙈 Cacher</button>
+    </div>
+
+    {{! ─── ÉCONOMIE ─── }}
+    <div class="sra2-tab-content active" data-tab="economy">
+        <h3 class="sra2-section-title">💰 Économie</h3>
+        <p class="sra2-section-desc">Gestion des coûts en Cash et séparation XP/Cash sur les fiches.</p>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.EnableItemCashCost.Name"}}</label>
+            <input type="checkbox" name="enableItemCashCost" {{checked settings.enableItemCashCost}} />
+            <p class="sra2-hint">{{localize "SRA2XPCash.Settings.EnableItemCashCost.Hint"}}</p>
+        </div>
+
+        <h4 class="sra2-subsection-title">Types d'objets concernés</h4>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.CashCostEquipment.Name"}}</label>
+            <input type="checkbox" name="cashCostEquipment" {{checked settings.cashCostEquipment}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.CashCostWeapon.Name"}}</label>
+            <input type="checkbox" name="cashCostWeapon" {{checked settings.cashCostWeapon}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.CashCostArmor.Name"}}</label>
+            <input type="checkbox" name="cashCostArmor" {{checked settings.cashCostArmor}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.CashCostCyberware.Name"}}</label>
+            <input type="checkbox" name="cashCostCyberware" {{checked settings.cashCostCyberware}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.CashCostCyberdeck.Name"}}</label>
+            <input type="checkbox" name="cashCostCyberdeck" {{checked settings.cashCostCyberdeck}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.CashCostVehicle.Name"}}</label>
+            <input type="checkbox" name="cashCostVehicle" {{checked settings.cashCostVehicle}} />
+        </div>
+    </div>
+
+    {{! ─── SONS ─── }}
+    <div class="sra2-tab-content" data-tab="sound">
+        <h3 class="sra2-section-title">🔊 Sons</h3>
+        <p class="sra2-section-desc">Fichiers audio joués à l'ouverture et à la fermeture des fiches de personnage.</p>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.SheetOpenSound.Name"}}</label>
+            <div class="sra2-filepicker-row">
+                <input type="text" name="sheetOpenSound" value="{{settings.sheetOpenSound}}" placeholder="/sounds/..."/>
+                <button type="button" class="sra2-fp-btn" data-target="sheetOpenSound" data-type="audio">📁</button>
+            </div>
+            <p class="sra2-hint">{{localize "SRA2XPCash.Settings.SheetOpenSound.Hint"}}</p>
+        </div>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2XPCash.Settings.SheetCloseSound.Name"}}</label>
+            <div class="sra2-filepicker-row">
+                <input type="text" name="sheetCloseSound" value="{{settings.sheetCloseSound}}" placeholder="/sounds/..."/>
+                <button type="button" class="sra2-fp-btn" data-target="sheetCloseSound" data-type="audio">📁</button>
+            </div>
+            <p class="sra2-hint">{{localize "SRA2XPCash.Settings.SheetCloseSound.Hint"}}</p>
+        </div>
+    </div>
+
+    {{! ─── INTERFACE ─── }}
+    <div class="sra2-tab-content" data-tab="interface">
+        <h3 class="sra2-section-title">🖥️ Interface</h3>
+        <p class="sra2-section-desc">Personnalisation de l'interface Foundry — chat, sidebar, mesures.</p>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HideDragMeasurement.Name"}}</label>
+            <input type="checkbox" name="hideDragMeasurement" {{checked settings.hideDragMeasurement}} />
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.HideDragMeasurement.Hint"}}</p>
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HideFormatBar.Name"}}</label>
+            <input type="checkbox" name="hideFormatBar" {{checked settings.hideFormatBar}} />
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.HideFormatBar.Hint"}}</p>
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.ChatControlsBelow.Name"}}</label>
+            <input type="checkbox" name="chatControlsBelow" {{checked settings.chatControlsBelow}} />
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.ChatControlsBelow.Hint"}}</p>
+        </div>
+
+        <h4 class="sra2-subsection-title">Barre latérale au démarrage</h4>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.SidebarExpandOnStart.Name"}}</label>
+            <input type="checkbox" name="sidebarExpandOnStart" {{checked settings.sidebarExpandOnStart}} />
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.SidebarExpandOnStart.Hint"}}</p>
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.SidebarDefaultTab.Name"}}</label>
+            <select name="sidebarDefaultTab">
+                {{#select settings.sidebarDefaultTab}}
+                <option value="chat">Chat</option>
+                <option value="combat">{{localize "SRA2UI.Settings.SidebarDefaultTab.Combat"}}</option>
+                <option value="scenes">{{localize "SRA2UI.Settings.SidebarDefaultTab.Scenes"}}</option>
+                <option value="actors">{{localize "SRA2UI.Settings.SidebarDefaultTab.Actors"}}</option>
+                <option value="items">{{localize "SRA2UI.Settings.SidebarDefaultTab.Items"}}</option>
+                <option value="journal">{{localize "SRA2UI.Settings.SidebarDefaultTab.Journal"}}</option>
+                <option value="tables">{{localize "SRA2UI.Settings.SidebarDefaultTab.Tables"}}</option>
+                <option value="cards">{{localize "SRA2UI.Settings.SidebarDefaultTab.Cards"}}</option>
+                <option value="macros">{{localize "SRA2UI.Settings.SidebarDefaultTab.Macros"}}</option>
+                <option value="playlists">{{localize "SRA2UI.Settings.SidebarDefaultTab.Playlists"}}</option>
+                <option value="compendium">{{localize "SRA2UI.Settings.SidebarDefaultTab.Compendium"}}</option>
+                <option value="settings">{{localize "SRA2UI.Settings.SidebarDefaultTab.Settings"}}</option>
+                {{/select}}
+            </select>
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.SidebarDefaultTab.Hint"}}</p>
+        </div>
+    </div>
+
+    {{! ─── CACHER ─── }}
+    <div class="sra2-tab-content" data-tab="hide">
+        <h3 class="sra2-section-title">🙈 Cacher des éléments UI</h3>
+        <p class="sra2-section-desc">Masquer des éléments de l'interface Foundry. Utile pour le broadcast, les joueurs sur écran partagé, ou un affichage minimaliste.</p>
+
+        <h4 class="sra2-subsection-title">Éléments généraux</h4>
+
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HideNavComplete.Name"}}</label>
+            <input type="checkbox" name="hideNavComplete" {{checked settings.hideNavComplete}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HideControls.Name"}}</label>
+            <input type="checkbox" name="hideControls" {{checked settings.hideControls}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HideHotbar.Name"}}</label>
+            <input type="checkbox" name="hideHotbar" {{checked settings.hideHotbar}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HideLogo.Name"}}</label>
+            <input type="checkbox" name="hideLogo" {{checked settings.hideLogo}} />
+        </div>
+        <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HidePlayers.Name"}}</label>
+            <input type="checkbox" name="hidePlayers" {{checked settings.hidePlayers}} />
+        </div>
+
+        <h4 class="sra2-subsection-title">Onglets de la barre latérale</h4>
+        <div class="sra2-grid-3col">
+            <div class="sra2-setting-row">
+                <label>Chat</label>
+                <input type="checkbox" name="hideTabChat" {{checked settings.hideTabChat}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Combat</label>
+                <input type="checkbox" name="hideTabCombat" {{checked settings.hideTabCombat}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Scènes</label>
+                <input type="checkbox" name="hideTabScenes" {{checked settings.hideTabScenes}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Acteurs</label>
+                <input type="checkbox" name="hideTabActors" {{checked settings.hideTabActors}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Objets</label>
+                <input type="checkbox" name="hideTabItems" {{checked settings.hideTabItems}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Journal</label>
+                <input type="checkbox" name="hideTabJournal" {{checked settings.hideTabJournal}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Tables</label>
+                <input type="checkbox" name="hideTabTables" {{checked settings.hideTabTables}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Cartes</label>
+                <input type="checkbox" name="hideTabCards" {{checked settings.hideTabCards}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Macros</label>
+                <input type="checkbox" name="hideTabMacros" {{checked settings.hideTabMacros}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Playlists</label>
+                <input type="checkbox" name="hideTabPlaylists" {{checked settings.hideTabPlaylists}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Compendium</label>
+                <input type="checkbox" name="hideTabCompendium" {{checked settings.hideTabCompendium}} />
+            </div>
+            <div class="sra2-setting-row">
+                <label>Paramètres</label>
+                <input type="checkbox" name="hideTabSettings" {{checked settings.hideTabSettings}} />
+            </div>
+        </div>
+    </div>
+
+    <div class="sra2-config-footer">
+        <button type="submit"><i class="fas fa-save"></i> Sauvegarder</button>
+    </div>
+</form>

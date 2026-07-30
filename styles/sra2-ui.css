@@ -66,3 +66,188 @@ body.sra2-hide-logo #logo {
 body.sra2-hide-players #players {
     display: none !important;
 }
+
+/* ==========================================
+   SRA2 Configuration App Styles
+   ========================================== */
+
+#sra2-enhancements-config .window-content {
+    background: var(--sra2-config-bg, #1a1a2e);
+    color: var(--sra2-config-text, #e0e0e0);
+    font-size: 14px;
+}
+
+/* Tabs bar */
+.sra2-config-tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--sra2-config-border, #2a2a4e);
+    padding-bottom: 0;
+}
+.sra2-tab {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    color: var(--sra2-config-text-dim, #888);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+}
+.sra2-tab:hover {
+    color: var(--sra2-config-text, #e0e0e0);
+    background: rgba(255,255,255,0.05);
+}
+.sra2-tab.active {
+    color: var(--sra2-config-active, #f0c040);
+    border-bottom-color: var(--sra2-config-active, #f0c040);
+}
+
+/* Tab content */
+.sra2-tab-content {
+    display: none;
+    padding: 8px 0;
+}
+.sra2-tab-content.active {
+    display: block;
+}
+
+/* Section titles */
+.sra2-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: var(--sra2-config-active, #f0c040);
+    border: none;
+}
+.sra2-section-desc {
+    color: var(--sra2-config-text-dim, #999);
+    font-size: 12px;
+    margin: 0 0 16px 0;
+    font-style: italic;
+}
+.sra2-subsection-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 16px 0 8px 0;
+    color: var(--sra2-config-text, #ccc);
+    border-bottom: 1px solid var(--sra2-config-border, #2a2a4e);
+    padding-bottom: 4px;
+}
+
+/* Setting rows */
+.sra2-setting-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 6px 8px;
+    margin: 2px 0;
+    border-radius: 4px;
+    transition: background 0.15s;
+    gap: 8px;
+}
+.sra2-setting-row:hover {
+    background: rgba(255,255,255,0.03);
+}
+.sra2-setting-row label {
+    flex: 0 0 200px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sra2-config-text, #e0e0e0);
+}
+.sra2-setting-row input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    accent-color: #f0c040;
+    cursor: pointer;
+}
+.sra2-setting-row input[type="text"],
+.sra2-setting-row input[type="number"],
+.sra2-setting-row select {
+    flex: 1;
+    max-width: 300px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--sra2-config-border, #2a2a4e);
+    color: var(--sra2-config-text, #e0e0e0);
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+.sra2-setting-row select {
+    cursor: pointer;
+}
+.sra2-hint {
+    flex: 0 0 100%;
+    font-size: 11px;
+    color: var(--sra2-config-text-dim, #888);
+    margin: 2px 0 0 0;
+    padding-left: 208px;
+}
+
+/* File picker row */
+.sra2-filepicker-row {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    max-width: 300px;
+}
+.sra2-filepicker-row input {
+    flex: 1;
+}
+.sra2-fp-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--sra2-config-border, #2a2a4e);
+    color: var(--sra2-config-text, #e0e0e0);
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.sra2-fp-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* 3-column grid for toggles */
+.sra2-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px 16px;
+}
+.sra2-grid-3col .sra2-setting-row {
+    padding: 4px 6px;
+}
+.sra2-grid-3col .sra2-setting-row label {
+    flex: 1;
+    font-size: 12px;
+}
+
+/* Footer */
+.sra2-config-footer {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid var(--sra2-config-border, #2a2a4e);
+    text-align: right;
+}
+.sra2-config-footer button {
+    background: var(--sra2-config-active, #f0c040);
+    color: #1a1a2e;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.sra2-config-footer button:hover {
+    background: #e0b030;
+    transform: translateY(-1px);
+}
+.sra2-config-footer button i {
+    margin-right: 6px;
+}
