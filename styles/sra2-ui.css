@@ -318,11 +318,12 @@ body.sra2-hide-chat-peek #chat-notifications {
     border: none !important;
     background: transparent !important;
     margin-top: 20px !important;
-    padding: 4px 0 !important;
+    padding: 4px 0 8px 0 !important;
     border-bottom: 2px solid var(--sra2-config-border, #2a2a4e) !important;
 }
 .sra2-section-separator .form-fields {
-    display: none !important;
+    flex: 0 0 auto;
+    max-width: 100%;
 }
 .sra2-section-separator label {
     font-size: 16px !important;
@@ -334,16 +335,14 @@ body.sra2-hide-chat-peek #chat-notifications {
     pointer-events: none;
 }
 .sra2-section-separator .notes {
+    flex-basis: 100% !important;
     font-size: 11px !important;
     color: var(--sra2-config-text-dim, #888) !important;
     margin-top: 2px !important;
     font-style: italic !important;
 }
 
-/* Collapse wrapper (the button to show/hide hide toggles) */
-.sra2-collapse-wrapper {
-    padding: 4px 0 8px 0;
-}
+/* Collapse button (inside the _sec_hide separator's form-fields) */
 .sra2-collapse-btn {
     background: rgba(255,255,255,0.06);
     border: 1px dashed var(--sra2-config-border, #2a2a4e);
@@ -354,8 +353,7 @@ body.sra2-hide-chat-peek #chat-notifications {
     font-size: 12px;
     font-weight: 500;
     transition: all 0.15s;
-    width: 100%;
-    text-align: left;
+    white-space: nowrap;
 }
 .sra2-collapse-btn:hover {
     background: rgba(255,255,255,0.12);
@@ -366,9 +364,4 @@ body.sra2-hide-chat-peek #chat-notifications {
     display: inline-block;
     width: 14px;
     font-size: 10px;
-}
-
-/* Hide toggles (hidden by default, shown by collapse) */
-.sra2-hide-toggle {
-    /* Hidden via jQuery .hide() in settings-org.js */
 }
