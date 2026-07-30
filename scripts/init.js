@@ -1,5 +1,5 @@
 import { registerSettings } from './settings.js';
-import { bindSheetOverrides } from './sheet-overrides.js';
+import { setupSheetOverrides } from './sheet-overrides.js';
 import { applyAllUI, reapplyUI } from './sra2-ui.js';
 import { initSettingsOrg } from './settings-org.js';
 
