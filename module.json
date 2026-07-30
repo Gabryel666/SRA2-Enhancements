@@ -1,8 +1,8 @@
 {
   "id": "sra2-enhancements",
   "title": "SRA2: Enhancements",
-  "description": "Economy separation and other enhancements for the Shadowrun Anarchy 2 system.",
-  "version": "14.1.0",
+  "description": "Economy separation, interface enhancements and UI tweaks for the Shadowrun Anarchy 2 system.",
+  "version": "14.2.0",
   "compatibility": {
     "minimum": "12",
     "verified": "14",
@@ -26,6 +26,9 @@
   "download": "https://github.com/Gabryel666/SRA2-Enhancements/releases/latest/download/sra2-enhancements.zip",
   "esmodules": [
     "scripts/init.js"
+  ],
+  "styles": [
+    "styles/sra2-ui.css"
   ],
   "languages": [
     {

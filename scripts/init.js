@@ -1,14 +1,19 @@
 import { registerSettings } from './settings.js';
 import { setupSheetOverrides } from './sheet-overrides.js';
+import { registerUISettings, applyAllUI } from './sra2-ui.js';
 
 Hooks.once('init', () => {
     console.log('SRA2 XP & Cash | Initializing module');
     registerSettings();
+    registerUISettings();
 });
 
 Hooks.once('ready', async () => {
     console.log('SRA2 XP & Cash | Ready, setting up sheet overrides');
     setupSheetOverrides();
+
+    // Apply UI tweaks
+    applyAllUI();
 
     // Skip migration if already done
     const alreadyMigrated = game.settings.get('sra2-enhancements', '_migrated');

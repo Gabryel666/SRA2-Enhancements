@@ -2,39 +2,39 @@
     "SRA2XPCash": {
         "Settings": {
             "EnableItemCashCost": {
-                "Name": "Enable Cash Cost on Items",
+                "Name": "💰 Enable Cash Cost on Items",
                 "Hint": "Master toggle for enabling the 'Cash' field on Item sheets."
             },
             "CashCostEquipment": {
-                "Name": "Enable Cash Cost for Equipment",
+                "Name": "💰 Cash Cost for Equipment",
                 "Hint": ""
             },
             "CashCostWeapon": {
-                "Name": "Enable Cash Cost for Weapons",
+                "Name": "💰 Cash Cost for Weapons",
                 "Hint": ""
             },
             "CashCostArmor": {
-                "Name": "Enable Cash Cost for Armor",
+                "Name": "💰 Cash Cost for Armor",
                 "Hint": ""
             },
             "CashCostCyberware": {
-                "Name": "Enable Cash Cost for Cyberware",
+                "Name": "💰 Cash Cost for Cyberware",
                 "Hint": ""
             },
             "CashCostCyberdeck": {
-                "Name": "Enable Cash Cost for Cyberdecks",
+                "Name": "💰 Cash Cost for Cyberdecks",
                 "Hint": ""
             },
             "CashCostVehicle": {
-                "Name": "Enable Cash Cost for Vehicles",
+                "Name": "💰 Cash Cost for Vehicles / Drones",
                 "Hint": ""
             },
             "SheetOpenSound": {
-                "Name": "Sheet Open Sound",
+                "Name": "🔊 Sheet Open Sound",
                 "Hint": "Select an audio file to play when a character sheet is opened."
             },
             "SheetCloseSound": {
-                "Name": "Sheet Close Sound",
+                "Name": "🔊 Sheet Close Sound",
                 "Hint": "Select an audio file to play when a character sheet is closed."
             }
         },
@@ -46,6 +46,110 @@
             "DeductCashPrompt": "Do you want to deduct the price of this item ({cost} Cash) from your cash pool?",
             "CashDeducted": "Deducted {cost} Cash for purchase.",
             "TotalXPTooltip": "Total Character XP Build Cost"
+        }
+    },
+    "SRA2UI": {
+        "Settings": {
+            "HideDragMeasurement": {
+                "Name": "🖥️ Hide drag measurement line",
+                "Hint": "Hides the distance line and number shown when dragging a token on the scene."
+            },
+            "HideFormatBar": {
+                "Name": "🖥️ Hide chat format toolbar",
+                "Hint": "Hides the text formatting toolbar (bold, italic, etc.) above the chat input."
+            },
+            "ChatControlsBelow": {
+                "Name": "🖥️ Chat controls below input",
+                "Hint": "Moves the chat control buttons (public, whisper, trash) below the message input field."
+            },
+            "SidebarExpandOnStart": {
+                "Name": "🖥️ Expand sidebar on start",
+                "Hint": "Automatically opens the sidebar when the world loads, on the tab selected below."
+            },
+            "SidebarDefaultTab": {
+                "Name": "🖥️ Default sidebar tab",
+                "Hint": "Selects which sidebar tab is active on startup.",
+                "Chat": "Chat",
+                "Combat": "Combat",
+                "Scenes": "Scenes",
+                "Actors": "Actors",
+                "Items": "Items",
+                "Journal": "Journal",
+                "Tables": "Tables",
+                "Cards": "Cards",
+                "Macros": "Macros",
+                "Playlists": "Playlists",
+                "Compendium": "Compendium",
+                "Settings": "Settings"
+            },
+            "HideNavComplete": {
+                "Name": "🙈 Hide navigation bar",
+                "Hint": "Completely hides the scene navigation bar at the top of the screen."
+            },
+            "HideControls": {
+                "Name": "🙈 Hide scene controls (left)",
+                "Hint": "Hides the left toolbar (select, pan, ruler, etc.)."
+            },
+            "HideHotbar": {
+                "Name": "🙈 Hide hotbar",
+                "Hint": "Hides the macro hotbar at the bottom of the screen."
+            },
+            "HideLogo": {
+                "Name": "🙈 Hide Foundry logo",
+                "Hint": "Hides the Foundry VTT logo at the top-left."
+            },
+            "HidePlayers": {
+                "Name": "🙈 Hide players list",
+                "Hint": "Hides the player list panel at the bottom-left."
+            },
+            "HideTabChat": {
+                "Name": "🙈 Chat — hide tab",
+                "Hint": "Hides the Chat tab in the sidebar."
+            },
+            "HideTabCombat": {
+                "Name": "🙈 Combat — hide tab",
+                "Hint": "Hides the Combat tab in the sidebar."
+            },
+            "HideTabScenes": {
+                "Name": "🙈 Scenes — hide tab",
+                "Hint": "Hides the Scenes tab in the sidebar."
+            },
+            "HideTabActors": {
+                "Name": "🙈 Actors — hide tab",
+                "Hint": "Hides the Actors tab in the sidebar."
+            },
+            "HideTabItems": {
+                "Name": "🙈 Items — hide tab",
+                "Hint": "Hides the Items tab in the sidebar."
+            },
+            "HideTabJournal": {
+                "Name": "🙈 Journal — hide tab",
+                "Hint": "Hides the Journal tab in the sidebar."
+            },
+            "HideTabTables": {
+                "Name": "🙈 Tables — hide tab",
+                "Hint": "Hides the Tables tab in the sidebar."
+            },
+            "HideTabCards": {
+                "Name": "🙈 Cards — hide tab",
+                "Hint": "Hides the Cards tab in the sidebar."
+            },
+            "HideTabMacros": {
+                "Name": "🙈 Macros — hide tab",
+                "Hint": "Hides the Macros tab in the sidebar."
+            },
+            "HideTabPlaylists": {
+                "Name": "🙈 Playlists — hide tab",
+                "Hint": "Hides the Playlists tab in the sidebar."
+            },
+            "HideTabCompendium": {
+                "Name": "🙈 Compendium — hide tab",
+                "Hint": "Hides the Compendium tab in the sidebar."
+            },
+            "HideTabSettings": {
+                "Name": "🙈 Settings — hide tab",
+                "Hint": "Hides the Settings tab in the sidebar."
+            }
         }
     }
 }
