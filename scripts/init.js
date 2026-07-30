@@ -1,7 +1,7 @@
 import { registerSettings } from './settings.js';
 import { setupSheetOverrides } from './sheet-overrides.js';
 import { applyAllUI } from './sra2-ui.js';
-import './config-app.js'; // side-effect: expose window.SRA2ConfigApp
+import './settings-org.js'; // Organisation visuelle des paramètres
 
 Hooks.once('init', () => {
     console.log('SRA2 XP & Cash | Initializing module');
