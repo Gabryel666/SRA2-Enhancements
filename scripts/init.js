@@ -1,12 +1,10 @@
 import { registerSettings } from './settings.js';
 import { setupSheetOverrides } from './sheet-overrides.js';
-import { applyAllUI, reapplyUI } from './sra2-ui.js';
-import { initSettingsOrg } from './settings-org.js';
+import { applyAllUI } from './sra2-ui.js';
 
 Hooks.once('init', () => {
-  console.log('SRA2 XP & Cash | Initializing module');
-  registerSettings();
-  initSettingsOrg();
+    console.log('SRA2 XP & Cash | Initializing module');
+    registerSettings();
 });
 
 Hooks.once('ready', async () => {
