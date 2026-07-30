@@ -33,7 +33,7 @@ export class SRA2ConfigApp extends FormApplication {
             // Interface
             'hideDragMeasurement', 'hideFormatBar', 'chatControlsBelow',
             'sidebarExpandOnStart', 'sidebarDefaultTab',
-            'hideChatPeek', 'autoUnpauseGM',
+            'hideChatPeek', 'autoUnpauseGM', 'hotbarCollapsed',
             // Hide
             'hideNavComplete', 'hideControls', 'hideHotbar', 'hideLogo', 'hidePlayers',
             'hideTabChat', 'hideTabCombat', 'hideTabScenes', 'hideTabActors', 'hideTabItems',

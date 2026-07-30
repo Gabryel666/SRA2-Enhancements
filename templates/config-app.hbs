@@ -127,6 +127,12 @@
         </div>
 
         <div class="sra2-setting-row">
+            <label>{{localize "SRA2UI.Settings.HotbarCollapsed.Name"}}</label>
+            <input type="checkbox" name="hotbarCollapsed" {{checked settings.hotbarCollapsed}} />
+            <p class="sra2-hint">{{localize "SRA2UI.Settings.HotbarCollapsed.Hint"}}</p>
+        </div>
+
+        <div class="sra2-setting-row">
             <label>{{localize "SRA2UI.Settings.AutoUnpauseGM.Name"}}</label>
             <input type="checkbox" name="autoUnpauseGM" {{checked settings.autoUnpauseGM}} />
             <p class="sra2-hint">{{localize "SRA2UI.Settings.AutoUnpauseGM.Hint"}}</p>

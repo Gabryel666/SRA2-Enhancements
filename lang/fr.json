@@ -90,6 +90,10 @@
                 "Name": "🖥️ Démarrer sans pause (MJ)",
                 "Hint": "Quand un MJ charge le monde, la pause est automatiquement levée."
             },
+            "HotbarCollapsed": {
+                "Name": "🖥️ Démarrer la hotbar réduite",
+                "Hint": "La barre de macros se charge en mode réduit. Un bouton ↵ permet de l'agrandir/réduire."
+            },
             "HideNavComplete": {
                 "Name": "🙈 Cacher la barre de navigation",
                 "Hint": "Masque complètement la barre de navigation en haut de l'écran."

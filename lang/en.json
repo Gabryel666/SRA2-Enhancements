@@ -90,6 +90,10 @@
                 "Name": "🖥️ Auto-unpause on GM login",
                 "Hint": "When a GM loads into the world, the pause is automatically cleared."
             },
+            "HotbarCollapsed": {
+                "Name": "🖥️ Start hotbar collapsed",
+                "Hint": "Macro bar loads in collapsed mode. A toggle button ↵ lets you expand/collapse it."
+            },
             "HideNavComplete": {
                 "Name": "🙈 Hide navigation bar",
                 "Hint": "Completely hides the scene navigation bar at the top of the screen."

@@ -24,14 +24,27 @@ body.sra2-hide-format-bar #chat-form {
     padding-bottom: 0 !important;
 }
 
-/* ---- Chat controls below input (DOM moved, CSS backup) ---- */
-body.sra2-chat-controls-below #chat-controls {
-    margin-top: 6px;
-    padding-top: 4px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+/* ---- Chat controls below input (JS DOM move + CSS flex fallback) ---- */
+body.sra2-chat-controls-below #chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 body.sra2-chat-controls-below #chat-log {
     flex: 1 1 auto;
+    min-height: 0;
+    order: 0;
+}
+body.sra2-chat-controls-below #chat-form {
+    flex: 0 0 auto;
+    order: 1;
+}
+body.sra2-chat-controls-below #chat-controls {
+    flex: 0 0 auto;
+    order: 2;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 /* ---- Sidebar tab hide — tuer completement l'espace ---- */

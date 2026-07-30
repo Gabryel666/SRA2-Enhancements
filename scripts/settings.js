@@ -84,6 +84,11 @@ export function registerSettings() {
     }
 
     // Nore-style enhancements
+    game.settings.register('sra2-enhancements', 'hotbarCollapsed', {
+        name: '🖥️ Démarrer la hotbar réduite',
+        hint: 'La barre de macros se charge en mode réduit. Un bouton permet de l\'agrandir/réduire.',
+        scope: 'world', config: false, type: Boolean, default: false
+    });
     game.settings.register('sra2-enhancements', 'hideChatPeek', {
         name: '🖥️ Cacher le mini-chat (chat peek)',
         hint: 'Cache le petit aperçu du chat quand vous êtes sur un autre onglet.',
