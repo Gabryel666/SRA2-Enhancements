@@ -3,8 +3,8 @@
 Ce module complémentaire pour FoundryVTT enrichit et personnalise l'expérience de jeu sur le système **Shadowrun Anarchy 2** (SRA2).
 
 [![Version](https://img.shields.io/github/v/release/Gabryel666/SRA2-Enhancements?label=version)](https://github.com/Gabryel666/SRA2-Enhancements/releases/latest)
-[![FoundryVTT](https://img.shields.io/badge/FoundryVTT-v11%2B-informational)](https://foundryvtt.com)
-[![SRA2](https://img.shields.io/badge/Système-SRA2%2013.2.1%2B-blue)](https://foundryvtt.com/packages/sra2)
+[![FoundryVTT](https://img.shields.io/badge/FoundryVTT-v14-informational)](https://foundryvtt.com)
+[![SRA2](https://img.shields.io/badge/Système-SRA2%2014.1.1%2B-blue)](https://foundryvtt.com/packages/sra2)
 
 ---
 
@@ -30,8 +30,8 @@ Configurez un fichier audio qui se joue automatiquement à l'ouverture ou à la 
 
 | Élément | Version |
 |---|---|
-| FoundryVTT | v11+ (vérifié v13) |
-| Système SRA2 | 13.2.1+ (vérifié 13.4.3) |
+| FoundryVTT | v12+ (vérifié v14) |
+| Système SRA2 | 13.2.1+ (vérifié 14.1.1) |
 | Fiche supportée | Actor Character Sheet V2 |
 
 ---

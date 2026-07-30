@@ -14,7 +14,11 @@ export function setupSheetOverrides() {
         // Play open sound if configured and not already played for this instance
         const openSound = game.settings.get('sra2-enhancements', 'sheetOpenSound');
         if (openSound && !app.sra2XpAudioPlayed) {
-            AudioHelper.play({ src: openSound, volume: 1.0, autoplay: true }, false);
+            try {
+                game.audio.play(openSound, { volume: 1.0 });
+            } catch (e) {
+                AudioHelper.play({ src: openSound, volume: 1.0, autoplay: true }, false);
+            }
             app.sra2XpAudioPlayed = true;
         }
 
@@ -55,7 +59,11 @@ export function setupSheetOverrides() {
         // Play close sound if configured
         const closeSound = game.settings.get('sra2-enhancements', 'sheetCloseSound');
         if (closeSound) {
-            AudioHelper.play({ src: closeSound, volume: 1.0, autoplay: true }, false);
+            try {
+                game.audio.play(closeSound, { volume: 1.0 });
+            } catch (e) {
+                AudioHelper.play({ src: closeSound, volume: 1.0, autoplay: true }, false);
+            }
         }
     });
 

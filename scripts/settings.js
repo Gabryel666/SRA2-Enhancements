@@ -23,6 +23,14 @@ export function registerSettings() {
         });
     });
 
+    // Internal: migration flag (hidden from config)
+    game.settings.register('sra2-enhancements', '_migrated', {
+        scope: 'world',
+        config: false,
+        type: Boolean,
+        default: false
+    });
+
     // Sound settings
     game.settings.register('sra2-enhancements', 'sheetOpenSound', {
         name: 'SRA2XPCash.Settings.SheetOpenSound.Name',

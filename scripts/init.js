@@ -10,6 +10,10 @@ Hooks.once('ready', async () => {
     console.log('SRA2 XP & Cash | Ready, setting up sheet overrides');
     setupSheetOverrides();
 
+    // Skip migration if already done
+    const alreadyMigrated = game.settings.get('sra2-enhancements', '_migrated');
+    if (alreadyMigrated) return;
+
     // Migrate old flags (safely — old scope may no longer exist)
     if (game.user.isGM) {
         for (const actor of game.actors) {
@@ -30,5 +34,9 @@ Hooks.once('ready', async () => {
                 } catch (e) { /* old module scope no longer active, skip */ }
             }
         }
+
+        // Flag as migrated so we skip this loop on next loads
+        await game.settings.set('sra2-enhancements', '_migrated', true);
+        console.log('SRA2 XP & Cash | Migration from old scope complete');
     }
 });
