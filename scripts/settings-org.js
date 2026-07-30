@@ -1,124 +1,156 @@
 // SRA2-Enhancements: Organisation visuelle des paramètres
-// Utilise le texte du label pour trouver les sections (compatible v12-v14+)
+// Match par label text, réordonne le DOM pour grouper les settings sous leurs sections.
 
 const MOD_ID = 'sra2-enhancements';
 
-// Associe chaque clé de section à son texte de label exact
-const SECTION_LABELS = {
-    '_sec_economy':  '💰 ÉCONOMIE',
-    '_sec_sound':    '🔊 SONS',
-    '_sec_interface':'🖥️ INTERFACE',
-    '_sec_hide':     '🙈 CACHER'
+// Mapping section → clés des settings
+const SECTION_MAP = {
+    'ECONOMIE':  ['enableItemCashCost','cashCostEquipment','cashCostWeapon','cashCostArmor','cashCostCyberware','cashCostCyberdeck','cashCostVehicle'],
+    'SONS':      ['sheetOpenSound','sheetCloseSound'],
+    'INTERFACE': ['hideDragMeasurement','hideFormatBar','chatControlsBelow','sidebarExpandOnStart','sidebarDefaultTab','hideChatPeek','hotbarCollapsed','autoUnpauseGM'],
+    'HIDE':      ['hideNavComplete','hideControls','hideHotbar','hideLogo','hidePlayers','hideTabChat','hideTabCombat','hideTabScenes','hideTabActors','hideTabItems','hideTabJournal','hideTabTables','hideTabCards','hideTabMacros','hideTabPlaylists','hideTabCompendium','hideTabSettings']
 };
 
-const HIDE_TOGGLES = [
-    'hideNavComplete', 'hideControls', 'hideHotbar', 'hideLogo', 'hidePlayers',
-    'hideTabChat', 'hideTabCombat', 'hideTabScenes', 'hideTabActors', 'hideTabItems',
-    'hideTabJournal', 'hideTabTables', 'hideTabCards', 'hideTabMacros',
-    'hideTabPlaylists', 'hideTabCompendium', 'hideTabSettings'
-];
+// Texte exact des labels des séparateurs de section
+const SECTION_LABELS = {
+    ECONOMIE:  '💰 ÉCONOMIE',
+    SONS:      '🔊 SONS',
+    INTERFACE: '🖥️ INTERFACE',
+    HIDE:      '🙈 CACHER'
+};
 
-// Labels des toggles à cacher (match par texte du label)
-const HIDE_LABELS = HIDE_TOGGLES.map(k => '🙈 ' + {
-    hideNavComplete: 'Cacher la barre de navigation',
-    hideControls: 'Cacher la barre d\'outils gauche',
-    hideHotbar: 'Cacher la hotbar',
-    hideLogo: 'Cacher le logo',
-    hidePlayers: 'Cacher la liste des joueurs',
-    hideTabChat: 'Cacher l\'onglet Chat',
-    hideTabCombat: 'Cacher l\'onglet Combat',
-    hideTabScenes: 'Cacher l\'onglet Scènes',
-    hideTabActors: 'Cacher l\'onglet Acteurs',
-    hideTabItems: 'Cacher l\'onglet Objets',
-    hideTabJournal: 'Cacher l\'onglet Journal',
-    hideTabTables: 'Cacher l\'onglet Tables',
-    hideTabCards: 'Cacher l\'onglet Objets plaçables',
-    hideTabMacros: 'Cacher l\'onglet Macros',
-    hideTabPlaylists: 'Cacher l\'onglet Playlists',
-    hideTabCompendium: 'Cacher l\'onglet Compendium',
-    hideTabSettings: 'Cacher l\'onglet Paramètres'
-}[k]);
+// Texte DISTINCTIF pour matcher chaque setting (une sous-chaîne unique du label)
+const KEY_LABEL = {
+    enableItemCashCost:'Activer le coût en Cash',
+    cashCostEquipment:'Equipement',
+    cashCostWeapon:'Weapon',
+    cashCostArmor:'Armor',
+    cashCostCyberware:'Cyberware',
+    cashCostCyberdeck:'Cyberdeck',
+    cashCostVehicle:'Vehicle',
+    sheetOpenSound:"Son à l'ouverture",
+    sheetCloseSound:'Son à la fermeture',
+    hideDragMeasurement:'Cacher la ligne de distance',
+    hideFormatBar:'Cacher la barre de formatage',
+    chatControlsBelow:'Contrôles du chat sous la saisie',
+    sidebarExpandOnStart:'Sidebar ouverte',
+    sidebarDefaultTab:'Onglet par défaut',
+    hideChatPeek:'mini-chat',
+    hotbarCollapsed:'hotbar réduite',
+    autoUnpauseGM:'sans pause',
+    hideNavComplete:'Cacher la barre de navigation',
+    hideControls:"Cacher la barre d'outils gauche",
+    hideHotbar:'Cacher la hotbar',
+    hideLogo:'Cacher le logo',
+    hidePlayers:'Cacher la liste des joueurs',
+    hideTabChat:"Cacher l'onglet Chat",
+    hideTabCombat:"Cacher l'onglet Combat",
+    hideTabScenes:"Cacher l'onglet Scènes",
+    hideTabActors:"Cacher l'onglet Acteurs",
+    hideTabItems:"Cacher l'onglet Objets",
+    hideTabJournal:"Cacher l'onglet Journal",
+    hideTabTables:"Cacher l'onglet Tables",
+    hideTabCards:'Objets plaçables',
+    hideTabMacros:"Cacher l'onglet Macros",
+    hideTabPlaylists:"Cacher l'onglet Playlists",
+    hideTabCompendium:"Cacher l'onglet Compendium",
+    hideTabSettings:"Cacher l'onglet Paramètres"
+};
 
 export function initSettingsOrg() {
-    Hooks.on('renderSettingsConfig', _onRenderSettingsConfig);
+    Hooks.on('renderSettingsConfig', onRender);
 }
 
-/**
- * Trouve un form-group dont le label correspond exactement au texte donné.
- * Compatible tous formats Foundry (data-setting-id, data-key, ou sans attribut).
- */
-function findGroupByLabel(html, labelText) {
+function findExact(html, text) {
     return html.find('.form-group').filter(function() {
         const lbl = $(this).find('label');
-        return lbl.length && lbl.text().trim() === labelText;
+        return lbl.length && lbl.text().trim() === text;
     }).first();
 }
 
-/**
- * Trouve un form-group par texte partiel dans le label.
- */
-function findGroupByPartialLabel(html, partialText) {
+function findByText(html, text) {
     return html.find('.form-group').filter(function() {
         const lbl = $(this).find('label');
-        return lbl.length && lbl.text().includes(partialText);
+        return lbl.length && lbl.text().includes(text);
     }).first();
 }
 
-function _onRenderSettingsConfig(app, html) {
-    // ── 1. Transformer les séparateurs en titres ──
-    for (const [key, label] of Object.entries(SECTION_LABELS)) {
-        const group = findGroupByLabel(html, label);
-        if (!group.length) {
-            console.warn('SRA2-ORG | Section not found:', label, key);
+function findAllByText(html, text) {
+    return html.find('.form-group').filter(function() {
+        const lbl = $(this).find('label');
+        return lbl.length && lbl.text().includes(text);
+    });
+}
+
+function findSetting(html, key) {
+    const labelPart = KEY_LABEL[key];
+    if (!labelPart) return $([]);
+    // D'abord essayer exact, puis contient
+    const el = findAllByText(html, labelPart);
+    if (el.length) return el;
+    return findByText(html, labelPart);
+}
+
+function onRender(app, html) {
+    for (const [secName, label] of Object.entries(SECTION_LABELS)) {
+        const section = findExact(html, label);
+        if (!section.length) {
+            console.warn('SRA2-ORG | Section not found:', label);
             continue;
         }
-        group.addClass('sra2-section-separator');
+        section.addClass('sra2-section-separator');
 
-        if (key === '_sec_hide') {
-            _injectCollapseButton(group, html);
+        // Réordonner : déplacer chaque setting sous sa section
+        const keys = SECTION_MAP[secName];
+        let anchor = section;
+
+        for (const k of keys) {
+            const el = findSetting(html, k);
+            if (el.length) {
+                anchor.after(el);
+                anchor = el;
+            }
+        }
+
+        // Section CACHER → bouton collapse
+        if (secName === 'HIDE') {
+            injectCollapseButton(section, html, keys);
         } else {
-            // Cacher le champ input
-            group.find('.form-fields').hide();
+            section.find('.form-fields').hide();
         }
     }
 }
 
-function _injectCollapseButton(group, html) {
-    // Protection anti-duplication
-    if (group.find('.sra2-collapse-btn').length) return;
+function injectCollapseButton(section, html, keys) {
+    if (section.find('.sra2-collapse-btn').length) return;
 
-    // Soit .form-fields existe, soit on crée un conteneur
-    let container = group.find('.form-fields');
+    let container = section.find('.form-fields');
     if (container.length) {
         container.empty();
     } else {
         container = $('<div class="form-fields"></div>');
-        group.append(container);
+        section.append(container);
     }
 
-    const btn = $(`<button type="button" class="sra2-collapse-btn">
-        <span class="sra2-collapse-icon">▶</span> Afficher les éléments à masquer
-    </button>`);
+    const btn = $('<button type="button" class="sra2-collapse-btn">'
+        + '<span class="sra2-collapse-icon">▶</span> Afficher les éléments à masquer'
+        + '</button>');
     container.append(btn);
 
     // Cacher les toggles au départ
-    for (const lbl of HIDE_LABELS) {
-        const el = findGroupByPartialLabel(html, lbl);
+    for (const k of keys) {
+        const el = findSetting(html, k);
         if (el.length) el.hide();
     }
 
-    // Click handler
     btn.on('click', function() {
-        // Déterminer si on doit montrer ou cacher
-        const first = findGroupByPartialLabel(html, HIDE_LABELS[0]);
+        const first = findSetting(html, keys[0]);
         const show = !first.length || !first.is(':visible');
-
-        for (const lbl of HIDE_LABELS) {
-            const el = findGroupByPartialLabel(html, lbl);
+        for (const k of keys) {
+            const el = findSetting(html, k);
             if (el.length) el.toggle(show);
         }
-
-        btn.html(`<span class="sra2-collapse-icon">${show ? '▼' : '▶'}</span> `
+        btn.html('<span class="sra2-collapse-icon">' + (show ? '▼' : '▶') + '</span> '
             + (show ? 'Masquer les éléments' : 'Afficher les éléments à masquer'));
     });
 }
