@@ -2,7 +2,7 @@
    SRA2-Enhancements: UI Tweaks
    ========================================== */
 
-/* ---- Drag measurement hide (CSS only, pas de setting core) ---- */
+/* ---- Drag measurement hide (CSS only) ---- */
 body.sra2-hide-drag-measure #measurement-tool {
     display: none !important;
 }
@@ -19,12 +19,11 @@ body.sra2-hide-format-bar #chat menu.editor-menu * {
     border: none !important;
     overflow: hidden !important;
 }
-/* Forcer le parent à se réduire aussi */
 body.sra2-hide-format-bar #chat-form {
     padding-bottom: 0 !important;
 }
 
-/* ---- Chat controls below input (JS DOM move + CSS flex fallback) ---- */
+/* ---- Chat controls below (JS move + CSS fallback) ---- */
 body.sra2-chat-controls-below #chat {
     display: flex;
     flex-direction: column;
@@ -47,9 +46,7 @@ body.sra2-chat-controls-below #chat-controls {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* ---- Sidebar tab hide — tuer completement l'espace ---- */
-/* Chaque bouton de tab est dans un conteneur flex ou flottant.
-   On cache aussi le parent immédiat si display:none suffit pas. */
+/* ---- Hide sidebar tabs (layout tué) ---- */
 body.sra2-hide-tab-chat button[data-tab="chat"],
 body.sra2-hide-tab-chat button[data-tab="chat"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
 body.sra2-hide-tab-combat button[data-tab="combat"],
@@ -76,16 +73,12 @@ body.sra2-hide-tab-settings button[data-tab="settings"],
 body.sra2-hide-tab-settings button[data-tab="settings"] * { display: none !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; flex: 0 0 0 !important; }
 
 /* ---- Hide controls (left toolbar) ---- */
-body.sra2-hide-controls #controls {
-    display: none !important;
-}
+body.sra2-hide-controls #controls { display: none !important; }
 
 /* ---- Hide hotbar ---- */
-body.sra2-hide-hotbar #hotbar {
-    display: none !important;
-}
+body.sra2-hide-hotbar #hotbar { display: none !important; }
 
-/* ---- Collapsible hotbar (de nores-interface-enhancements) ---- */
+/* ---- Hotbar collapsed ---- */
 body.sra2-hotbar-collapsed #hotbar .hotbar-directory,
 body.sra2-hotbar-collapsed #hotbar .macro {
     display: none !important;
@@ -96,17 +89,13 @@ body.sra2-hotbar-collapsed #hotbar {
 }
 
 /* ---- Hide logo ---- */
-body.sra2-hide-logo #logo {
-    display: none !important;
-}
+body.sra2-hide-logo #logo { display: none !important; }
 
 /* ---- Hide players list ---- */
 body.sra2-hide-players #players,
-body.sra2-hide-players section#players {
-    display: none !important;
-}
+body.sra2-hide-players section#players { display: none !important; }
 
-/* ---- Hide mini chat (chat peek) de nores-interface-enhancements ---- */
+/* ---- Hide chat peek ---- */
 body.sra2-hide-chat-peek #chat-notifications {
     display: none !important;
     width: 0 !important;
@@ -121,205 +110,15 @@ body.sra2-hide-chat-peek #chat-notifications {
 }
 
 /* ==========================================
-   SRA2 Configuration App Styles
-   ========================================== */
-
-#sra2-enhancements-config .window-content {
-    background: var(--sra2-config-bg, #1a1a2e);
-    color: var(--sra2-config-text, #e0e0e0);
-    font-size: 14px;
-    overflow-y: auto;
-}
-
-/* Sections */
-.sra2-config-section {
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--sra2-config-border, #2a2a4e);
-}
-.sra2-config-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-/* Section headings */
-.sra2-section-heading {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0 0 4px 0;
-    color: var(--sra2-config-active, #f0c040);
-    border: none;
-    padding: 0;
-}
-.sra2-section-desc {
-    color: var(--sra2-config-text-dim, #999);
-    font-size: 12px;
-    margin: 0 0 14px 0;
-    font-style: italic;
-}
-.sra2-sub-heading {
-    font-size: 14px;
-    font-weight: 600;
-    margin: 14px 0 6px 0;
-    color: var(--sra2-config-text, #ccc);
-    border-bottom: 1px solid var(--sra2-config-border, #2a2a4e);
-    padding-bottom: 4px;
-}
-
-/* Setting rows */
-.sra2-setting-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 6px 8px;
-    margin: 2px 0;
-    border-radius: 4px;
-    transition: background 0.15s;
-    gap: 8px;
-}
-.sra2-setting-row:hover {
-    background: rgba(255,255,255,0.03);
-}
-.sra2-setting-row label {
-    flex: 0 0 200px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--sra2-config-text, #e0e0e0);
-}
-.sra2-setting-row input[type="checkbox"] {
-    flex: 0 0 auto;
-    width: 18px;
-    height: 18px;
-    accent-color: #f0c040;
-    cursor: pointer;
-}
-.sra2-setting-row input[type="text"],
-.sra2-setting-row input[type="number"],
-.sra2-setting-row select {
-    flex: 1;
-    max-width: 300px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid var(--sra2-config-border, #2a2a4e);
-    color: var(--sra2-config-text, #e0e0e0);
-    padding: 4px 8px;
-    border-radius: 3px;
-    font-size: 12px;
-}
-.sra2-setting-row select {
-    cursor: pointer;
-}
-.sra2-hint {
-    flex: 0 0 100%;
-    font-size: 11px;
-    color: var(--sra2-config-text-dim, #888);
-    margin: 2px 0 0 0;
-    padding-left: 208px;
-}
-
-/* File picker row */
-.sra2-filepicker-row {
-    display: flex;
-    gap: 4px;
-    flex: 1;
-    max-width: 300px;
-}
-.sra2-filepicker-row input {
-    flex: 1;
-}
-.sra2-fp-btn {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid var(--sra2-config-border, #2a2a4e);
-    color: var(--sra2-config-text, #e0e0e0);
-    padding: 4px 8px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 14px;
-}
-.sra2-fp-btn:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-/* Collapse button for hide section */
-.sra2-collapse-btn {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--sra2-config-border, #2a2a4e);
-    color: var(--sra2-config-text, #ddd);
-    padding: 8px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 8px;
-    transition: background 0.15s;
-}
-.sra2-collapse-btn:hover {
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-}
-.sra2-collapse-icon {
-    display: inline-block;
-    width: 16px;
-    font-size: 10px;
-}
-
-/* Hide panel */
-.sra2-hide-panel {
-    padding: 4px 0;
-}
-
-/* 3-column grid for toggles */
-.sra2-grid-3col {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px 16px;
-}
-.sra2-grid-3col .sra2-setting-row {
-    padding: 4px 6px;
-}
-.sra2-grid-3col .sra2-setting-row label {
-    flex: 1;
-    font-size: 12px;
-}
-
-/* Footer */
-.sra2-config-footer {
-    margin-top: 20px;
-    padding-top: 12px;
-    border-top: 1px solid var(--sra2-config-border, #2a2a4e);
-    text-align: right;
-}
-.sra2-config-footer button {
-    background: var(--sra2-config-active, #f0c040);
-    color: #1a1a2e;
-    border: none;
-    padding: 8px 24px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.sra2-config-footer button:hover {
-    background: #e0b030;
-    transform: translateY(-1px);
-}
-.sra2-config-footer button i {
-    margin-right: 6px;
-}
-
-/* ==========================================
    Settings Config — Section Separators
    ========================================== */
 
-/* Separator row — transform into a section heading */
 .sra2-section-separator {
     border: none !important;
     background: transparent !important;
     margin-top: 20px !important;
     padding: 4px 0 8px 0 !important;
-    border-bottom: 2px solid var(--sra2-config-border, #2a2a4e) !important;
+    border-bottom: 2px solid #2a2a4e !important;
 }
 .sra2-section-separator .form-fields {
     flex: 0 0 auto;
@@ -328,7 +127,7 @@ body.sra2-hide-chat-peek #chat-notifications {
 .sra2-section-separator label {
     font-size: 16px !important;
     font-weight: 700 !important;
-    color: var(--sra2-config-active, #f0c040) !important;
+    color: #f0c040 !important;
     text-transform: none !important;
     letter-spacing: normal !important;
     line-height: 1.4 !important;
@@ -337,16 +136,16 @@ body.sra2-hide-chat-peek #chat-notifications {
 .sra2-section-separator .notes {
     flex-basis: 100% !important;
     font-size: 11px !important;
-    color: var(--sra2-config-text-dim, #888) !important;
+    color: #888 !important;
     margin-top: 2px !important;
     font-style: italic !important;
 }
 
-/* Collapse button (inside the _sec_hide separator's form-fields) */
+/* Collapse button (in _sec_hide separator's form-fields) */
 .sra2-collapse-btn {
     background: rgba(255,255,255,0.06);
-    border: 1px dashed var(--sra2-config-border, #2a2a4e);
-    color: var(--sra2-config-text, #ddd);
+    border: 1px dashed #2a2a4e;
+    color: #ddd;
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
