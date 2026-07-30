@@ -1,13 +1,12 @@
-import { SRA2ConfigApp } from './config-app.js';
-
 export function registerSettings() {
     // ── Register menu (opens custom config app) ──
+    // SRA2ConfigApp est exposé sur window par config-app.js (importé via init.js)
     game.settings.registerMenu('sra2-enhancements', 'sra2ConfigMenu', {
         name: 'SRA2: Enhancements — Configuration',
         label: 'Configuration',
         hint: 'Ouvrir les paramètres organisés du module.',
         icon: 'fas fa-sliders-h',
-        type: SRA2ConfigApp,
+        type: window.SRA2ConfigApp,
         restricted: true
     });
 

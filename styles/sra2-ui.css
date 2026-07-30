@@ -128,65 +128,39 @@ body.sra2-hide-chat-peek #chat-notifications {
     background: var(--sra2-config-bg, #1a1a2e);
     color: var(--sra2-config-text, #e0e0e0);
     font-size: 14px;
+    overflow-y: auto;
 }
 
-/* Tabs bar */
-.sra2-config-tabs {
-    display: flex;
-    gap: 2px;
-    margin-bottom: 16px;
-    border-bottom: 2px solid var(--sra2-config-border, #2a2a4e);
-    padding-bottom: 0;
+/* Sections */
+.sra2-config-section {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--sra2-config-border, #2a2a4e);
 }
-.sra2-tab {
-    flex: 1;
-    padding: 10px 16px;
-    border: none;
-    background: transparent;
-    color: var(--sra2-config-text-dim, #888);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    transition: all 0.2s;
-}
-.sra2-tab:hover {
-    color: var(--sra2-config-text, #e0e0e0);
-    background: rgba(255,255,255,0.05);
-}
-.sra2-tab.active {
-    color: var(--sra2-config-active, #f0c040);
-    border-bottom-color: var(--sra2-config-active, #f0c040);
+.sra2-config-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
 }
 
-/* Tab content */
-.sra2-tab-content {
-    display: none;
-    padding: 8px 0;
-}
-.sra2-tab-content.active {
-    display: block;
-}
-
-/* Section titles */
-.sra2-section-title {
+/* Section headings */
+.sra2-section-heading {
     font-size: 18px;
     font-weight: 700;
     margin: 0 0 4px 0;
     color: var(--sra2-config-active, #f0c040);
     border: none;
+    padding: 0;
 }
 .sra2-section-desc {
     color: var(--sra2-config-text-dim, #999);
     font-size: 12px;
-    margin: 0 0 16px 0;
+    margin: 0 0 14px 0;
     font-style: italic;
 }
-.sra2-subsection-title {
+.sra2-sub-heading {
     font-size: 14px;
     font-weight: 600;
-    margin: 16px 0 8px 0;
+    margin: 14px 0 6px 0;
     color: var(--sra2-config-text, #ccc);
     border-bottom: 1px solid var(--sra2-config-border, #2a2a4e);
     padding-bottom: 4px;
@@ -263,6 +237,36 @@ body.sra2-hide-chat-peek #chat-notifications {
 }
 .sra2-fp-btn:hover {
     background: rgba(255,255,255,0.2);
+}
+
+/* Collapse button for hide section */
+.sra2-collapse-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--sra2-config-border, #2a2a4e);
+    color: var(--sra2-config-text, #ddd);
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 8px;
+    transition: background 0.15s;
+}
+.sra2-collapse-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+.sra2-collapse-icon {
+    display: inline-block;
+    width: 16px;
+    font-size: 10px;
+}
+
+/* Hide panel */
+.sra2-hide-panel {
+    padding: 4px 0;
 }
 
 /* 3-column grid for toggles */
