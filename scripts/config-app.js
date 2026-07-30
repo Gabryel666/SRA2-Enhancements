@@ -77,9 +77,13 @@ class SRA2ConfigApp extends FormApplication {
 
         ui.notifications.info('SRA2: Enhancements — Configuration sauvegardée.');
 
-        // Re-apply UI settings immediately
-        const { reapplyUI } = await import('./sra2-ui.js');
-        reapplyUI();
+        // Re-apply UI settings immediately (dynamic import, safe ici car click utilisateur)
+        try {
+            const { reapplyUI } = await import('./sra2-ui.js');
+            reapplyUI();
+        } catch(e) {
+            console.warn('SRA2 Config | Could not reapply UI:', e);
+        }
 
         // Reload if sidebar startup changed
         const needsReload = data.sidebarExpandOnStart !== game.settings.get(MOD_ID, 'sidebarExpandOnStart');
@@ -101,11 +105,7 @@ class SRA2ConfigApp extends FormApplication {
 
             const isHidden = panel.style.display === 'none';
             panel.style.display = isHidden ? 'block' : 'none';
-            btn.querySelector('.sra2-collapse-icon').textContent = isHidden ? '▼' : '▶';
-            btn.textContent = btn.textContent.replace(
-                isHidden ? 'Afficher' : 'Masquer',
-                isHidden ? 'Masquer' : 'Afficher'
-            );
+            btn.querySelector('.sra2-collapse-icon').innerHTML = isHidden ? '▼' : '▶';
         });
 
         // File picker buttons
@@ -125,5 +125,14 @@ class SRA2ConfigApp extends FormApplication {
     }
 }
 
-// Exposed on window for settings.js to registerMenu
-window.SRA2ConfigApp = SRA2ConfigApp;
+// ── Register the menu HERE, right next to the class ──
+Hooks.once('init', () => {
+    game.settings.registerMenu('sra2-enhancements', 'sra2ConfigMenu', {
+        name: 'SRA2: Enhancements — Configuration',
+        label: 'Configuration',
+        hint: 'Ouvrir les paramètres organisés du module.',
+        icon: 'fas fa-sliders-h',
+        type: SRA2ConfigApp,
+        restricted: true
+    });
+});

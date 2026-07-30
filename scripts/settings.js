@@ -1,15 +1,4 @@
 export function registerSettings() {
-    // ── Register menu (opens custom config app) ──
-    // SRA2ConfigApp est exposé sur window par config-app.js (importé via init.js)
-    game.settings.registerMenu('sra2-enhancements', 'sra2ConfigMenu', {
-        name: 'SRA2: Enhancements — Configuration',
-        label: 'Configuration',
-        hint: 'Ouvrir les paramètres organisés du module.',
-        icon: 'fas fa-sliders-h',
-        type: window.SRA2ConfigApp,
-        restricted: true
-    });
-
     // ── Settings: now all config: false (managed by the custom app) ──
     const featTypes = ['Equipment', 'Weapon', 'Armor', 'Cyberware', 'Cyberdeck', 'Vehicle'];
 
