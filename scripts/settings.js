@@ -1,96 +1,96 @@
+/**
+ * SRA2: Enhancements — Paramètres
+ *
+ * ─────────────────────────────────────────────────────────────
+ *  POUR AJOUTER UN PARAMÈTRE : ajoute une entrée dans SETTINGS.
+ *  Champs supportés :
+ *    key        → identifiant du paramètre (unique)
+ *    name       → clé i18n du libellé (lang/en.json, lang/fr.json)
+ *    hint       → clé i18n de l'aide (optionnelle)
+ *    type       → Boolean | String | Number
+ *    default    → valeur par défaut
+ *    filePicker → 'audio' pour un sélecteur de fichier audio
+ *    choices    → objet { valeur: libellé } pour les listes
+ *    config     → false pour un paramètre interne invisible
+ *  Le fichier est trié par sections (Économie, Sons, Interne).
+ * ─────────────────────────────────────────────────────────────
+ */
+
+export const MOD_ID = 'sra2-enhancements';
+
+const FEAT_TYPES = ['Equipment', 'Weapon', 'Armor', 'Cyberware', 'Cyberdeck', 'Vehicle'];
+
+const SETTINGS = [
+    // ── 💰 Économie : coût en Cash ──
+    {
+        key: 'enableItemCashCost',
+        name: 'SRA2XPCash.Settings.EnableItemCashCost.Name',
+        hint: 'SRA2XPCash.Settings.EnableItemCashCost.Hint',
+        type: Boolean,
+        default: true
+    },
+    ...FEAT_TYPES.map(type => ({
+        key: `cashCost${type}`,
+        name: `SRA2XPCash.Settings.CashCost${type}.Name`,
+        hint: `SRA2XPCash.Settings.CashCost${type}.Hint`,
+        type: Boolean,
+        default: true
+    })),
+
+    // ── 🔊 Sons : ouverture / fermeture de fiche ──
+    {
+        key: 'sheetOpenSound',
+        name: 'SRA2XPCash.Settings.SheetOpenSound.Name',
+        hint: 'SRA2XPCash.Settings.SheetOpenSound.Hint',
+        type: String,
+        default: '',
+        filePicker: 'audio'
+    },
+    {
+        key: 'sheetCloseSound',
+        name: 'SRA2XPCash.Settings.SheetCloseSound.Name',
+        hint: 'SRA2XPCash.Settings.SheetCloseSound.Hint',
+        type: String,
+        default: '',
+        filePicker: 'audio'
+    },
+
+    // ── Interne (invisible) ──
+    {
+        key: '_migrated',
+        type: Boolean,
+        default: false,
+        config: false
+    }
+];
+
 export function registerSettings() {
-    const MOD_ID = 'sra2-enhancements';
-
-    // ── 💰 ÉCONOMIE ──
-    game.settings.register(MOD_ID, 'enableItemCashCost', {
-        name: '💰 Activer le coût en Cash',
-        hint: 'Si activé, le Cash sera utilisable sur les objets.',
-        scope: 'world', config: true, type: Boolean, default: true
-    });
-    const econTypes = ['Equipment', 'Weapon', 'Armor', 'Cyberware', 'Cyberdeck', 'Vehicle'];
-    for (const type of econTypes) {
-        game.settings.register(MOD_ID, `cashCost${type}`, {
-            name: `💰 Coût en Cash — ${type}`,
-            scope: 'world', config: true, type: Boolean, default: true
+    for (const s of SETTINGS) {
+        game.settings.register(MOD_ID, s.key, {
+            name: s.name,
+            hint: s.hint,
+            scope: s.scope || 'world',
+            config: s.config !== false,
+            type: s.type,
+            default: s.default,
+            ...(s.filePicker ? { filePicker: s.filePicker } : {}),
+            ...(s.choices ? { choices: s.choices } : {})
         });
     }
-
-    // ── 🔊 SONS ──
-    game.settings.register(MOD_ID, 'sheetOpenSound', {
-        name: '🔊 Son à l\'ouverture',
-        hint: 'Joué à l\'ouverture d\'une fiche de personnage.',
-        scope: 'world', config: true, type: String, default: '', filePicker: 'audio'
-    });
-    game.settings.register(MOD_ID, 'sheetCloseSound', {
-        name: '🔊 Son à la fermeture',
-        hint: 'Joué à la fermeture d\'une fiche de personnage.',
-        scope: 'world', config: true, type: String, default: '', filePicker: 'audio'
-    });
-
-    // ── 🖥️ INTERFACE ──
-    const interfaceSettings = [
-        ['hideDragMeasurement', '🖥️ Cacher la ligne de distance', 'Cache la ligne quand vous mesurez une distance. L\'icône règle reste visible.'],
-        ['hideFormatBar', '🖥️ Cacher la barre de formatage', 'Cache la barre de formatage (gras/italique/etc.) dans le chat.'],
-        ['chatControlsBelow', '🖥️ Contrôles du chat sous la saisie', 'Déplace les boutons (public/privé/poubelle) sous le champ de saisie.'],
-        ['sidebarExpandOnStart', '🖥️ Sidebar ouverte au démarrage', 'La barre latérale s\'ouvre automatiquement au chargement.'],
-        ['sidebarDefaultTab', '🖥️ Onglet par défaut', 'Quel onglet de la sidebar est actif au démarrage.',
-            { chat: 'Chat', combat: 'Combat', scenes: 'Scènes', actors: 'Acteurs',
-              items: 'Objets', journal: 'Journal', tables: 'Tables', cards: 'Objets plaçables',
-              macros: 'Macros', playlists: 'Playlists', compendium: 'Compendium', settings: 'Paramètres' }],
-        ['hideChatPeek', '🖥️ Cacher le mini-chat (chat peek)', 'Cache l\'aperçu du chat quand vous êtes sur un autre onglet.'],
-        ['hotbarCollapsed', '🖥️ Démarrer la hotbar réduite', 'La hotbar se charge en mode réduit. Un bouton ↵ permet de l\'agrandir/réduire.'],
-        ['autoUnpauseGM', '🖥️ Démarrer sans pause (MJ)', 'Quand un MJ charge le monde, la pause est automatiquement levée.'],
-    ];
-    for (const s of interfaceSettings) {
-        const opts = {
-            scope: 'world', config: true, type: s[3] ? String : Boolean,
-            default: s[3] ? 'chat' : false,
-            name: s[1], hint: s[2]
-        };
-        if (s[3]) opts.choices = s[3];
-        game.settings.register(MOD_ID, s[0], opts);
-    }
-
-    // ── 🙈 CACHER ──
-    const hideSettings = [
-        ['hideNavComplete', '🙈 Cacher la barre de navigation'],
-        ['hideControls',    '🙈 Cacher la barre d\'outils gauche'],
-        ['hideHotbar',      '🙈 Cacher la hotbar'],
-        ['hideLogo',        '🙈 Cacher le logo'],
-        ['hidePlayers',     '🙈 Cacher la liste des joueurs'],
-        ['hideTabChat',     '🙈 Cacher l\'onglet Chat'],
-        ['hideTabCombat',   '🙈 Cacher l\'onglet Combat'],
-        ['hideTabScenes',   '🙈 Cacher l\'onglet Scènes'],
-        ['hideTabActors',   '🙈 Cacher l\'onglet Acteurs'],
-        ['hideTabItems',    '🙈 Cacher l\'onglet Objets'],
-        ['hideTabJournal',  '🙈 Cacher l\'onglet Journal'],
-        ['hideTabTables',   '🙈 Cacher l\'onglet Tables'],
-        ['hideTabCards',    '🙈 Cacher l\'onglet Objets plaçables'],
-        ['hideTabMacros',   '🙈 Cacher l\'onglet Macros'],
-        ['hideTabPlaylists','🙈 Cacher l\'onglet Playlists'],
-        ['hideTabCompendium','🙈 Cacher l\'onglet Compendium'],
-        ['hideTabSettings', '🙈 Cacher l\'onglet Paramètres'],
-    ];
-    for (const [key, name] of hideSettings) {
-        game.settings.register(MOD_ID, key, {
-            name: name,
-            scope: 'world', config: true, type: Boolean, default: false
-        });
-    }
-
-    // Migration flag (caché)
-    game.settings.register(MOD_ID, '_migrated', {
-        scope: 'world', config: false, type: Boolean, default: false
-    });
 }
 
+/** Un type d'atout (featType système, ex: "equipment") est-il concerné par le coût en Cash ? */
 export function isItemCashEnabled(featType) {
-    if (!game.settings.get('sra2-enhancements', 'enableItemCashCost')) return false;
+    if (!game.settings.get(MOD_ID, 'enableItemCashCost')) return false;
     if (!featType) return false;
+
+    // Met la première lettre en capitale pour matcher la clé (cashCostEquipment, …)
     const typeKey = featType.charAt(0).toUpperCase() + featType.slice(1).toLowerCase();
+
     try {
-        return game.settings.get('sra2-enhancements', `cashCost${typeKey}`);
+        return game.settings.get(MOD_ID, `cashCost${typeKey}`);
     } catch (e) {
+        // Le type n'a pas de paramètre dédié → non concerné par le Cash
         return false;
     }
 }

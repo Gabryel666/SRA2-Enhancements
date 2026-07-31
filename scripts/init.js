@@ -1,4 +1,4 @@
-import { registerSettings } from './settings.js';
+import { MOD_ID, registerSettings } from './settings.js';
 import { setupSheetOverrides } from './sheet-overrides.js';
 import { applyAllUI } from './sra2-ui.js';
 
@@ -15,7 +15,7 @@ Hooks.once('ready', async () => {
     applyAllUI();
 
     // Skip migration if already done
-    const alreadyMigrated = game.settings.get('sra2-enhancements', '_migrated');
+    const alreadyMigrated = game.settings.get(MOD_ID, '_migrated');
     if (alreadyMigrated) return;
 
     // Migrate old flags (safely — old scope may no longer exist)
@@ -24,7 +24,7 @@ Hooks.once('ready', async () => {
             try {
                 const oldCash = actor.getFlag('sra2-xp-cash', 'cash');
                 if (oldCash !== undefined) {
-                    await actor.setFlag('sra2-enhancements', 'cash', oldCash);
+                    await actor.setFlag(MOD_ID, 'cash', oldCash);
                     await actor.unsetFlag('sra2-xp-cash', 'cash');
                 }
             } catch (e) { /* old module scope no longer active, skip */ }
@@ -32,7 +32,7 @@ Hooks.once('ready', async () => {
                 try {
                     const oldCost = item.getFlag('sra2-xp-cash', 'cost');
                     if (oldCost !== undefined) {
-                        await item.setFlag('sra2-enhancements', 'cost', oldCost);
+                        await item.setFlag(MOD_ID, 'cost', oldCost);
                         await item.unsetFlag('sra2-xp-cash', 'cost');
                     }
                 } catch (e) { /* old module scope no longer active, skip */ }
@@ -40,7 +40,7 @@ Hooks.once('ready', async () => {
         }
 
         // Flag as migrated so we skip this loop on next loads
-        await game.settings.set('sra2-enhancements', '_migrated', true);
+        await game.settings.set(MOD_ID, '_migrated', true);
         console.log('SRA2 XP & Cash | Migration from old scope complete');
     }
 });
