@@ -26,9 +26,6 @@
   "esmodules": [
     "scripts/init.js"
   ],
-  "styles": [
-    "styles/sra2-ui.css"
-  ],
   "languages": [
     {
       "lang": "en",

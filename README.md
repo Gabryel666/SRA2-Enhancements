@@ -42,4 +42,3 @@ Configurez un fichier audio qui se joue automatiquement à l'ouverture ou à la 
 - **Migration automatique :** Les anciennes données stockées sous `sra2-xp-cash` sont migrées automatiquement au lancement du monde.
 - **Protection des données :** Le Cash des personnages est stocké dans les flags du module (`flags.sra2-enhancements.cash`) et n'interfère pas avec les données système natives.
 
-

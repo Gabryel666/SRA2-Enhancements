@@ -2,39 +2,39 @@
     "SRA2XPCash": {
         "Settings": {
             "EnableItemCashCost": {
-                "Name": "💰 Activer le coût en Cash global",
+                "Name": "Activer le coût en Cash global",
                 "Hint": "Si activé, le 'Cash' sera utilisable sur les objets."
             },
             "CashCostEquipment": {
-                "Name": "💰 Coût en Cash pour les Équipements",
+                "Name": "Coût en Cash pour les Équipements",
                 "Hint": ""
             },
             "CashCostWeapon": {
-                "Name": "💰 Coût en Cash pour les Armes",
+                "Name": "Coût en Cash pour les Armes",
                 "Hint": ""
             },
             "CashCostArmor": {
-                "Name": "💰 Coût en Cash pour les Armures",
+                "Name": "Coût en Cash pour les Armures",
                 "Hint": ""
             },
             "CashCostCyberware": {
-                "Name": "💰 Coût en Cash pour le Cyberware",
+                "Name": "Coût en Cash pour le Cyberware",
                 "Hint": ""
             },
             "CashCostCyberdeck": {
-                "Name": "💰 Coût en Cash pour les Cyberdecks",
+                "Name": "Coût en Cash pour les Cyberdecks",
                 "Hint": ""
             },
             "CashCostVehicle": {
-                "Name": "💰 Coût en Cash pour les Véhicules / Drones",
+                "Name": "Coût en Cash pour les Véhicules / Drones",
                 "Hint": ""
             },
             "SheetOpenSound": {
-                "Name": "🔊 Son à l'ouverture",
+                "Name": "Son à l'ouverture",
                 "Hint": "Sélectionnez un fichier audio à jouer lors de l'ouverture d'une fiche de personnage."
             },
             "SheetCloseSound": {
-                "Name": "🔊 Son à la fermeture",
+                "Name": "Son à la fermeture",
                 "Hint": "Sélectionnez un fichier audio à jouer lors de la fermeture d'une fiche de personnage."
             }
         },
@@ -46,122 +46,6 @@
             "DeductCashPrompt": "Voulez-vous déduire le prix de cet atout ({cost} Cash) de vos fonds ?",
             "CashDeducted": "Débité de {cost} Cash pour l'achat.",
             "TotalXPTooltip": "Coût Total Cumulé du Personnage (XP)"
-        }
-    },
-    "SRA2UI": {
-        "Settings": {
-            "HideDragMeasurement": {
-                "Name": "🖥️ Cacher la ligne de distance (drag)",
-                "Hint": "Cache la ligne et le chiffre de distance qui s'affichent quand vous déplacez un token sur la scène."
-            },
-            "HideFormatBar": {
-                "Name": "🖥️ Cacher la barre de formatage du chat",
-                "Hint": "Masque la barre d'outils (gras, italique, etc.) au-dessus du champ de saisie du chat."
-            },
-            "ChatControlsBelow": {
-                "Name": "🖥️ Contrôles du chat sous la saisie",
-                "Hint": "Déplace les boutons (public, privé, poubelle) en dessous du champ de saisie du message."
-            },
-            "SidebarExpandOnStart": {
-                "Name": "🖥️ Ouvrir la barre latérale au démarrage",
-                "Hint": "La barre latérale s'ouvre automatiquement quand le monde charge, sur l'onglet choisi ci-dessous."
-            },
-            "SidebarDefaultTab": {
-                "Name": "🖥️ Onglet par défaut au démarrage",
-                "Hint": "Choisit quel onglet de la barre latérale est actif au chargement.",
-                "Chat": "Chat",
-                "Combat": "Combat",
-                "Scenes": "Scènes",
-                "Actors": "Acteurs",
-                "Items": "Objets",
-                "Journal": "Journal",
-                "Tables": "Tables",
-                "Cards": "Objets plaçables",
-                "Macros": "Macros",
-                "Playlists": "Playlists",
-                "Compendium": "Compendium",
-                "Settings": "Paramètres"
-            },
-            "HideChatPeek": {
-                "Name": "🖥️ Cacher le mini-chat (chat peek)",
-                "Hint": "Cache le petit aperçu du chat qui apparaît quand vous êtes sur un autre onglet."
-            },
-            "AutoUnpauseGM": {
-                "Name": "🖥️ Démarrer sans pause (MJ)",
-                "Hint": "Quand un MJ charge le monde, la pause est automatiquement levée."
-            },
-            "HotbarCollapsed": {
-                "Name": "🖥️ Démarrer la hotbar réduite",
-                "Hint": "La barre de macros se charge en mode réduit. Un bouton ↵ permet de l'agrandir/réduire."
-            },
-            "HideNavComplete": {
-                "Name": "🙈 Cacher la barre de navigation",
-                "Hint": "Masque complètement la barre de navigation en haut de l'écran."
-            },
-            "HideControls": {
-                "Name": "🙈 Cacher les contrôles de scène (gauche)",
-                "Hint": "Masque la barre d'outils à gauche (sélection, déplacement, etc.)."
-            },
-            "HideHotbar": {
-                "Name": "🙈 Cacher la barre de raccourcis (hotbar)",
-                "Hint": "Masque la barre de macros en bas de l'écran."
-            },
-            "HideLogo": {
-                "Name": "🙈 Cacher le logo Foundry",
-                "Hint": "Masque le logo Foundry VTT en haut à gauche."
-            },
-            "HidePlayers": {
-                "Name": "🙈 Cacher la liste des joueurs",
-                "Hint": "Masque le panneau des joueurs en bas à gauche."
-            },
-            "HideTabChat": {
-                "Name": "🙈 Chat — cacher l'onglet",
-                "Hint": "Cache l'onglet Chat dans la barre latérale."
-            },
-            "HideTabCombat": {
-                "Name": "🙈 Combat — cacher l'onglet",
-                "Hint": "Cache l'onglet Combat dans la barre latérale."
-            },
-            "HideTabScenes": {
-                "Name": "🙈 Scènes — cacher l'onglet",
-                "Hint": "Cache l'onglet Scènes dans la barre latérale."
-            },
-            "HideTabActors": {
-                "Name": "🙈 Acteurs — cacher l'onglet",
-                "Hint": "Cache l'onglet Acteurs dans la barre latérale."
-            },
-            "HideTabItems": {
-                "Name": "🙈 Objets — cacher l'onglet",
-                "Hint": "Cache l'onglet Objets dans la barre latérale."
-            },
-            "HideTabJournal": {
-                "Name": "🙈 Journal — cacher l'onglet",
-                "Hint": "Cache l'onglet Journal dans la barre latérale."
-            },
-            "HideTabTables": {
-                "Name": "🙈 Tables — cacher l'onglet",
-                "Hint": "Cache l'onglet Tables dans la barre latérale."
-            },
-            "HideTabCards": {
-                "Name": "🙈 Cartes — cacher l'onglet",
-                "Hint": "Cache l'onglet Cartes dans la barre latérale."
-            },
-            "HideTabMacros": {
-                "Name": "🙈 Macros — cacher l'onglet",
-                "Hint": "Cache l'onglet Macros dans la barre latérale."
-            },
-            "HideTabPlaylists": {
-                "Name": "🙈 Playlists — cacher l'onglet",
-                "Hint": "Cache l'onglet Playlists dans la barre latérale."
-            },
-            "HideTabCompendium": {
-                "Name": "🙈 Compendium — cacher l'onglet",
-                "Hint": "Cache l'onglet Compendium dans la barre latérale."
-            },
-            "HideTabSettings": {
-                "Name": "🙈 Paramètres — cacher l'onglet",
-                "Hint": "Cache l'onglet Paramètres dans la barre latérale."
-            }
         }
     }
 }
