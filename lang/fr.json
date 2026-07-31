@@ -2,39 +2,39 @@
     "SRA2XPCash": {
         "Settings": {
             "EnableItemCashCost": {
-                "Name": "Activer le coût en Cash global",
-                "Hint": "Si activé, le 'Cash' sera utilisable sur les objets."
+                "Name": "💰 Activer le coût en Cash global",
+                "Hint": "Si activé, le 'Cash' sera utilisable sur les objets et véhicules."
             },
             "CashCostEquipment": {
-                "Name": "Coût en Cash pour les Équipements",
+                "Name": "💰 Coût en Cash — Équipement",
                 "Hint": ""
             },
             "CashCostWeapon": {
-                "Name": "Coût en Cash pour les Armes",
+                "Name": "💰 Coût en Cash — Armes",
                 "Hint": ""
             },
             "CashCostArmor": {
-                "Name": "Coût en Cash pour les Armures",
+                "Name": "💰 Coût en Cash — Armures",
                 "Hint": ""
             },
             "CashCostCyberware": {
-                "Name": "Coût en Cash pour le Cyberware",
+                "Name": "💰 Coût en Cash — Cyberware",
                 "Hint": ""
             },
             "CashCostCyberdeck": {
-                "Name": "Coût en Cash pour les Cyberdecks",
+                "Name": "💰 Coût en Cash — Cyberdecks",
                 "Hint": ""
             },
             "CashCostVehicle": {
-                "Name": "Coût en Cash pour les Véhicules / Drones",
-                "Hint": ""
+                "Name": "💰 Coût en Cash — Véhicules/Drones",
+                "Hint": "S'applique aux atouts véhicules et aux véhicules (acteurs) liés aux personnages."
             },
             "SheetOpenSound": {
-                "Name": "Son à l'ouverture",
+                "Name": "🔊 Son à l'ouverture",
                 "Hint": "Sélectionnez un fichier audio à jouer lors de l'ouverture d'une fiche de personnage."
             },
             "SheetCloseSound": {
-                "Name": "Son à la fermeture",
+                "Name": "🔊 Son à la fermeture",
                 "Hint": "Sélectionnez un fichier audio à jouer lors de la fermeture d'une fiche de personnage."
             }
         },
@@ -42,8 +42,11 @@
             "XP": "XP",
             "Cash": "Cash",
             "ItemCashCostLabel": "Coût en Cash",
+            "VehicleCashCostLabel": "Coût en Cash du véhicule",
             "DeductCashTitle": "Achat d'objet",
             "DeductCashPrompt": "Voulez-vous déduire le prix de cet atout ({cost} Cash) de vos fonds ?",
+            "DeductVehicleTitle": "Acquisition de véhicule",
+            "DeductVehiclePrompt": "Voulez-vous déduire le prix de ce véhicule ({cost} Cash) de vos fonds ?",
             "CashDeducted": "Débité de {cost} Cash pour l'achat.",
             "TotalXPTooltip": "Coût Total Cumulé du Personnage (XP)"
         }

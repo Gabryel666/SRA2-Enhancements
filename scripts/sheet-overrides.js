@@ -11,6 +11,15 @@ import { MOD_ID, isItemCashEnabled } from './settings.js';
  *   sans modification grâce à rootEl().
  * - Audio : game.audio.play() (API v14). Le global AudioHelper a été
  *   retiré du core en v14 (issue #13436) → aucun fallback.
+ *
+ * Véhicules / Drones (acteurs) :
+ * - Le système SRA2 gère les véhicules comme des acteurs liés au personnage
+ *   (system.linkedVehicles = tableau d'UUID). Le glissement d'un véhicule
+ *   sur une fiche de perso crée une copie (avec matricule) et l'ajoute aux
+ *   linkedVehicles.
+ * - Ce module applique la même gestion XP/Cash que sur les atouts :
+ *   champ « Coût en Cash » sur la fiche véhicule, affichage du coût dans la
+ *   liste des véhicules liés, et déduction du Cash à l'acquisition.
  */
 
 /** Retourne le HTMLElement racine quel que soit le type de html (jQuery V1 ou HTMLElement V2). */
@@ -28,6 +37,11 @@ async function playSound(src, volume = 1.0) {
     } catch (e) {
         console.warn('SRA2 Enhancements | Lecture du son impossible :', src, e);
     }
+}
+
+/** Le coût en Cash d'un document (atout ou véhicule), 0 si absent. */
+function getCashCost(doc) {
+    return doc?.getFlag?.(MOD_ID, 'cost') || 0;
 }
 
 export function setupSheetOverrides() {
@@ -53,6 +67,25 @@ export function setupSheetOverrides() {
                 playSound(openSound, 1.0);
                 app.sra2XpAudioPlayed = true;
             }
+        }
+
+        // ── Fiche véhicule : champ Coût en Cash ──
+        if (actor.type === 'vehicle') {
+            if (isItemCashEnabled('vehicle') && !root.querySelector('.vehicle-cash-cost')) {
+                const label = game.i18n.localize('SRA2XPCash.UI.VehicleCashCostLabel') || 'Coût en Cash';
+                const currentCashCost = getCashCost(actor);
+                const vehicleCost = root.querySelector('.vehicle-cost');
+                if (vehicleCost) {
+                    vehicleCost.insertAdjacentHTML('afterend', `
+                        <div class="vehicle-cash-cost" style="margin-top: 4px; display: flex; align-items: center; gap: 4px; color: gold; font-weight: bold; font-size: 0.8rem;">
+                            <span>${label} : </span>
+                            <input type="number" name="flags.${MOD_ID}.cost" value="${currentCashCost}" style="width:60px; text-align:right; border:none; border-bottom:1px solid gold; background:transparent; color:gold; font-weight:bold;" />
+                            <span>¥</span>
+                        </div>
+                    `);
+                }
+            }
+            return;
         }
 
         // La suite ne concerne que les personnages
@@ -86,11 +119,25 @@ export function setupSheetOverrides() {
         // Injection du coût en Cash dans les listes de la feuille
         root.querySelectorAll('.feat-item, .skill-item').forEach(el => {
             const itemId = el.dataset?.itemId;
-            if (!itemId) return;
-            const item = actor.items.get(itemId);
-            if (!item || !isItemCashEnabled(item.system?.featType)) return;
+            const vehicleUuid = el.dataset?.vehicleUuid;
+            if (!itemId && !vehicleUuid) return;
+            // Les armes de véhicule sont des skill-item liées au véhicule, pas des véhicules
+            if (el.dataset?.weaponId) return;
 
-            const cashCost = item.getFlag(MOD_ID, 'cost') || 0;
+            let doc = null;
+            let featType = null;
+            if (itemId) {
+                doc = actor.items.get(itemId);
+                if (!doc) return;
+                featType = doc.system?.featType;
+            } else if (vehicleUuid) {
+                doc = foundry.utils.fromUuidSync(vehicleUuid);
+                if (!doc || doc.type !== 'vehicle') return;
+                featType = 'vehicle';
+            }
+            if (!isItemCashEnabled(featType)) return;
+
+            const cashCost = getCashCost(doc);
 
             // Ligne d'infos avancées : juste après la ligne de l'item (ou après le groupe cyberdeck)
             let advancedRow = el.nextElementSibling?.classList.contains('advanced-info') ? el.nextElementSibling : null;
@@ -99,7 +146,7 @@ export function setupSheetOverrides() {
                 if (sibling?.classList.contains('advanced-info')) advancedRow = sibling;
             }
 
-            // Masquer le coût XP natif de l'item
+            // Masquer le coût XP natif de l'item / véhicule
             const featCost = el.querySelector('.feat-cost');
             if (featCost) featCost.style.display = 'none';
 
@@ -136,7 +183,7 @@ export function setupSheetOverrides() {
             if (!isItemCashEnabled(featType)) return;
 
             const generalSection = root.querySelector('section[data-section-content="general"]');
-            const currentCashCost = item.getFlag(MOD_ID, 'cost') || 0;
+            const currentCashCost = getCashCost(item);
             const label = game.i18n.localize('SRA2XPCash.UI.ItemCashCostLabel') || 'Coût en Cash';
             const groupHtml = `
                 <div class="form-group cash-cost-group" style="background: rgba(255, 215, 0, 0.05); border-left: 3px solid gold; padding-left: 8px;">
@@ -191,8 +238,8 @@ export function setupSheetOverrides() {
         if (item.type !== 'feat') return;
         if (!isItemCashEnabled(item.system?.featType)) return;
 
-        const cashCost = item.getFlag(MOD_ID, 'cost');
-        if (cashCost && cashCost > 0) {
+        const cashCost = getCashCost(item);
+        if (cashCost > 0) {
             const confirm = await Dialog.confirm({
                 title: game.i18n.localize('SRA2XPCash.UI.DeductCashTitle') || "Achat d'objet",
                 content: `<p>${game.i18n.format('SRA2XPCash.UI.DeductCashPrompt', { cost: cashCost })}</p>`,
@@ -205,5 +252,41 @@ export function setupSheetOverrides() {
                 ui.notifications.info(game.i18n.format('SRA2XPCash.UI.CashDeducted', { cost: cashCost }));
             }
         }
+    });
+
+    // ── Véhicule : déduction du Cash à l'acquisition (glissement sur la fiche perso) ──
+    // Le système crée une copie du véhicule puis ajoute son UUID à system.linkedVehicles.
+    // Ce hook détecte l'ajout et propose la déduction, comme pour les atouts.
+    Hooks.on('preUpdateActor', (actor, changes, options, userId) => {
+        if (game.user.id !== userId) return;
+        if (actor.type !== 'character') return;
+        if (!changes.system?.linkedVehicles) return;
+
+        const oldUuids = actor.system?.linkedVehicles || [];
+        const newUuids = changes.system.linkedVehicles || [];
+        const added = newUuids.filter(uuid => !oldUuids.includes(uuid));
+        if (!added.length) return;
+        if (!isItemCashEnabled('vehicle')) return;
+
+        const vehicle = foundry.utils.fromUuidSync(added[0]);
+        if (!vehicle || vehicle.type !== 'vehicle') return;
+
+        const cashCost = getCashCost(vehicle);
+        if (cashCost <= 0) return;
+
+        // Différé après l'update en cours (setFlag déclencherait sinon preUpdateActor en boucle)
+        setTimeout(async () => {
+            const confirm = await Dialog.confirm({
+                title: game.i18n.localize('SRA2XPCash.UI.DeductVehicleTitle') || "Acquisition de véhicule",
+                content: `<p>${game.i18n.format('SRA2XPCash.UI.DeductVehiclePrompt', { cost: cashCost })}</p>`,
+                defaultYes: true
+            });
+
+            if (confirm) {
+                const currentCash = actor.getFlag(MOD_ID, 'cash') || 0;
+                await actor.setFlag(MOD_ID, 'cash', currentCash - cashCost);
+                ui.notifications.info(game.i18n.format('SRA2XPCash.UI.CashDeducted', { cost: cashCost }));
+            }
+        }, 100);
     });
 }

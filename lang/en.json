@@ -2,39 +2,39 @@
     "SRA2XPCash": {
         "Settings": {
             "EnableItemCashCost": {
-                "Name": "Enable Cash Cost on Items",
-                "Hint": "Master toggle for enabling the 'Cash' field on Item sheets."
+                "Name": "💰 Enable Cash Cost globally",
+                "Hint": "If enabled, 'Cash' can be used on items and vehicles."
             },
             "CashCostEquipment": {
-                "Name": "Enable Cash Cost for Equipment",
+                "Name": "💰 Cash Cost — Equipment",
                 "Hint": ""
             },
             "CashCostWeapon": {
-                "Name": "Enable Cash Cost for Weapons",
+                "Name": "💰 Cash Cost — Weapons",
                 "Hint": ""
             },
             "CashCostArmor": {
-                "Name": "Enable Cash Cost for Armor",
+                "Name": "💰 Cash Cost — Armor",
                 "Hint": ""
             },
             "CashCostCyberware": {
-                "Name": "Enable Cash Cost for Cyberware",
+                "Name": "💰 Cash Cost — Cyberware",
                 "Hint": ""
             },
             "CashCostCyberdeck": {
-                "Name": "Enable Cash Cost for Cyberdecks",
+                "Name": "💰 Cash Cost — Cyberdecks",
                 "Hint": ""
             },
             "CashCostVehicle": {
-                "Name": "Enable Cash Cost for Vehicles",
-                "Hint": ""
+                "Name": "💰 Cash Cost — Vehicles/Drones",
+                "Hint": "Applies to vehicle feats and vehicle actors linked to characters."
             },
             "SheetOpenSound": {
-                "Name": "Sheet Open Sound",
+                "Name": "🔊 Sheet Open Sound",
                 "Hint": "Select an audio file to play when a character sheet is opened."
             },
             "SheetCloseSound": {
-                "Name": "Sheet Close Sound",
+                "Name": "🔊 Sheet Close Sound",
                 "Hint": "Select an audio file to play when a character sheet is closed."
             }
         },
@@ -42,8 +42,11 @@
             "XP": "XP",
             "Cash": "Cash",
             "ItemCashCostLabel": "Cost in Cash",
+            "VehicleCashCostLabel": "Vehicle Cash Cost",
             "DeductCashTitle": "Purchase Item",
             "DeductCashPrompt": "Do you want to deduct the price of this item ({cost} Cash) from your cash pool?",
+            "DeductVehicleTitle": "Vehicle Acquisition",
+            "DeductVehiclePrompt": "Do you want to deduct the price of this vehicle ({cost} Cash) from your cash pool?",
             "CashDeducted": "Deducted {cost} Cash for purchase.",
             "TotalXPTooltip": "Total Character XP Build Cost"
         }

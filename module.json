@@ -1,8 +1,8 @@
 {
   "id": "sra2-enhancements",
-  "title": "SRA2: Enhancements",
+  "title": "Gab's SRA2 Enhancements",
   "description": "Economy separation and other enhancements for the Shadowrun Anarchy 2 system.",
-  "version": "14.3.0",
+  "version": "14.3.1",
   "compatibility": {
     "minimum": "14",
     "verified": "14"
@@ -26,6 +26,9 @@
   "esmodules": [
     "scripts/init.js"
   ],
+  "styles": [
+    "styles/sra2-enhancements.css"
+  ],
   "languages": [
     {
       "lang": "en",
@@ -41,7 +44,7 @@
   "packs": [
     {
       "name": "anarchy-objets",
-      "label": "SRA2 - Enhancements (Objets)",
+      "label": "Gab's SRA2 Enhancements (Objets)",
       "path": "packs/anarchy-objets",
       "type": "Item",
       "system": "sra2",

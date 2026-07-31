@@ -1,9 +1,11 @@
 import { MOD_ID, registerSettings } from './settings.js';
+import { initSettingsOrg } from './settings-org.js';
 import { setupSheetOverrides } from './sheet-overrides.js';
 
 Hooks.once('init', () => {
     console.log('SRA2 XP & Cash | Initializing module');
     registerSettings();
+    initSettingsOrg();
 });
 
 Hooks.once('ready', async () => {

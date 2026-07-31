@@ -12,7 +12,8 @@
  *    filePicker → 'audio' pour un sélecteur de fichier audio
  *    choices    → objet { valeur: libellé } pour les listes
  *    config     → false pour un paramètre interne invisible
- *  Le fichier est trié par sections (Économie, Sons, Interne).
+ *    separator  → true pour un titre de section (pas un vrai paramètre)
+ *  Le fichier est trié par sections (Cash/XP, Audio, Interne).
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -21,6 +22,16 @@ export const MOD_ID = 'sra2-enhancements';
 const FEAT_TYPES = ['Equipment', 'Weapon', 'Armor', 'Cyberware', 'Cyberdeck', 'Vehicle'];
 
 const SETTINGS = [
+    // ── Titre de section : Gestion Cash / XP ──
+    {
+        key: '_sec_cash',
+        name: '💰 Gestion Cash / XP',
+        hint: 'Séparation de l\'économie : coût en Cash sur les objets et véhicules.',
+        type: String,
+        default: '',
+        separator: true
+    },
+
     // ── 💰 Économie : coût en Cash ──
     {
         key: 'enableItemCashCost',
@@ -36,6 +47,16 @@ const SETTINGS = [
         type: Boolean,
         default: true
     })),
+
+    // ── Titre de section : Ambiance Audio UI ──
+    {
+        key: '_sec_sound',
+        name: '🔊 Ambiance Audio UI',
+        hint: 'Sons joués à l\'ouverture et à la fermeture des fiches.',
+        type: String,
+        default: '',
+        separator: true
+    },
 
     // ── 🔊 Sons : ouverture / fermeture de fiche ──
     {

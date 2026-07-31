@@ -1,4 +1,4 @@
-# SRA2: Enhancements
+# Gab's SRA2 Enhancements
 
 Ce module complémentaire pour FoundryVTT enrichit et personnalise l'expérience de jeu sur le système **Shadowrun Anarchy 2** (SRA2).
 
@@ -17,6 +17,12 @@ Le système natif SRA2 gère parfois l'équipement via les points d'expérience.
 
 ### 🏷️ Coût en Cash sur les Objets
 Les armes, équipements, cyberwares, cyberdecks et autres objets bénéficient d'un champ **"Coût en Cash"** affiché en doré dans les listes de la fiche de personnage.
+
+### 🚗 Véhicules & Drones (acteurs)
+Les véhicules/drones du système SRA2 (glissés dans les fiches de personnage) bénéficient de la même gestion :
+- Champ **"Coût en Cash"** sur leur fiche d'acteur
+- Coût en Cash affiché dans la liste des véhicules liés
+- **Déduction automatique du Cash** lors de l'acquisition par glissement, comme pour les objets
 
 ### 🛒 Déduction Automatique à l'Achat
 Lorsqu'un objet ayant un coût en Cash est ajouté à la fiche d'un personnage, une fenêtre de confirmation propose de déduire automatiquement cette somme de son portefeuille.
