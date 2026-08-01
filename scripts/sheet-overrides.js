@@ -71,11 +71,14 @@ export function setupSheetOverrides() {
 
         // ── Fiche véhicule : champ Coût en Cash ──
         if (actor.type === 'vehicle') {
-            if (isItemCashEnabled('vehicle') && !root.querySelector('.vehicle-cash-cost')) {
-                const label = game.i18n.localize('SRA2XPCash.UI.VehicleCashCostLabel') || 'Coût en Cash';
-                const currentCashCost = getCashCost(actor);
+            if (isItemCashEnabled('vehicle')) {
                 const vehicleCost = root.querySelector('.vehicle-cost');
-                if (vehicleCost) {
+                // Le Cash remplace le coût natif (XP/Yens) : masquer le bloc coût du système
+                if (vehicleCost) vehicleCost.style.display = 'none';
+
+                if (vehicleCost && !root.querySelector('.vehicle-cash-cost')) {
+                    const label = game.i18n.localize('SRA2XPCash.UI.VehicleCashCostLabel') || 'Coût en Cash';
+                    const currentCashCost = getCashCost(actor);
                     vehicleCost.insertAdjacentHTML('afterend', `
                         <div class="vehicle-cash-cost" style="margin-top: 4px; display: flex; align-items: center; gap: 4px; color: gold; font-weight: bold; font-size: 0.8rem;">
                             <span>${label} : </span>
